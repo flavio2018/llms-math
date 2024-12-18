@@ -1,0 +1,2155 @@
+,task_name,prompt_type,original_input,prompt,0_shot_cot_first_out,gpt_output,original_target
+0,logic,self_consistency,((i|(i|(F&T)))&(!(F|(((T&T)&T)&(!((!(!T))&(u|(((j|j)&j)|(!(F&F)))))))))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((i|(i|(F&T)))&(!(F|(((T&T)&T)&(!((!(!T))&(u|(((j|j)&j)|(!(F&F)))))))))).
+A: Let's think step-by-step.","1. Any value AND with False (F&T) will yield False. Thus, ""F&T"" simplifies to ""F"".
+2. Any value OR with False will yield the original value itself. Therefore, ""i|F"" simplifies to ""i"".
+3. The expression ""!(!T)"" will simplify to ""T"" (since !T is False, and !False is True).
+4. Any value AND with True will yield the original value itself. So, ""(j|j)&j"" simplifies to ""j"".
+5. ""F&F"" simplifies to ""F"", and ""!(F&F)"" simplifies to ""!F"", which is True (T).
+6. Any value OR with True is True. Therefore, ""u|T"" or ""j|T"" simplifies to ""T"".
+7. Now we have ""T&T&T&(!T)"", which further simplifies to ""F"" since any expression AND with False is False.
+8. Now ""!F"" simplifies to ""T"".
+9. Now we have ""(i&(!T))"", which further simplifies to ""i&F"" and finally to ""F"" since any expression AND with False is False.
+So, the given logic formula simplifies to False (F).",F,i
+1,logic,self_consistency,(((x&((x|(x&x))|x))&x)|(!(!(F&(!(((((c&c)|c)|c)|c)|((!((F&T)&T))|T))))))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(((x&((x|(x&x))|x))&x)|(!(!(F&(!(((((c&c)|c)|c)|c)|((!((F&T)&T))|T))))))).
+A: Let's think step-by-step.","Step 1: Simplify (x&x), (c&c) and (F&T)
+Both (x&x) and (c&c) simplify to x and c respectively since a value ANDed with itself will always give the same value. 
+(F&T) simplifies to F, since False AND True is always False.
+
+We now have:
+(((x&((x|(x&x))|x))&x)|(!(!(F&(!(((((c|c)|c)|c)|((!(F&T))|T)))))).
+    = (((x&((x|x)|x))&x)|(!(!(F&(!(((((c|c)|c)|c)|(!(F)|T))))))).
+
+Step 2: Simplify x|x and c|c and F|T
+Both (x|x) and (c|c) simplify to x and c respectively, since a value ORed with itself is always that same value. 
+F|T simplifies to T, since False OR True is always True.
+
+We now have:
+(((x&x&x)&x)|(!(!(F&(!((c|(!F|T))))))).
+  =((x&x)|(!(!(F&(!(c|T)))))).
+  
+Step 3: Simplify c|T and !F
+c|T simplifies to T, since anything ORed with True is always True. 
+!F simplifies to T, since NOT False is True.
+
+We now have:
+((x&x)|(!(!(F&(!T)))))).
+    =((x)|(!(!(F&F)))).
+  
+Step 4: Evaluate F&F and !T
+F&F simplifies to F, since False AND False is False.
+!T simplifies to F, since NOT True is False.
+
+We now have:
+(x|(!(!F))).
+  = (x|(!T)).
+
+Step 5: Evaluate !T
+!T simplifies to F, since NOT True is False.
+
+We now have:
+x|F
+
+Step 6: Evaluating x|F (where x can be either True or False)
+x|F simplifies to x, since anything ORed with False keeps its original value. 
+
+So, the final result of the given logic formula is: 
+x.",x,x
+2,logic,self_consistency,(!((T|((F|T)|((!F)|((((c&(c&T))|(f&(F|F)))|T)&(!(F&T))))))&(F&(F&T)))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(!((T|((F|T)|((!F)|((((c&(c&T))|(f&(F|F)))|T)&(!(F&T))))))&(F&(F&T)))).
+A: Let's think step-by-step.","1. F&T equals to F (Because FALSE and anything equals FALSE): 
+
+   (!((T|((F|T)|((!F)|((((c&(c&T))|(f&(F|F)))|T)&(!F))))))&(F&F)
+
+2. F|F equals to F (Because FALSE or FALSE equals FALSE): 
+
+   (!((T|((F|T)|((!F)|((((c&(c&T))|(f&F))|T)&(!F))))))&(F&F)
+
+3. FALSE and anything equals FALSE: 
+
+   (!((T|((F|T)|((!F)|((((c&(c&T))|F)|T)&(!F))))))&F
+
+4. !F equals to T (Because not FALSE equals TRUE): 
+
+   (!((T|((F|T)|((T)|((((c&(c&T))|F))|T))))&F
+
+5. ((c&(c&T)) simplifies to c (c and TRUE equals c): 
+
+   (!((T|((F|T)|((T)|((c|F)|T))))&F
+
+6. F|T equals to T (Because FALSE or TRUE equals TRUE) x2: 
+
+   (!(((T|T))|T)&F)
+
+7. T|T equals to T (Because TRUE or TRUE equals TRUE): 
+
+   (!(T)&F)
+
+8. Finally : 
+
+   (!T)&F or simply F (Because not TRUE equals FALSE)",F,T
+3,logic,self_consistency,((T|(T&(T|T)))&(T&(T&((!((!(!(!(F&F))))&(!(T&(!(j&F))))))|(!(t|T)))))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((T|(T&(T|T)))&(T&(T&((!((!(!(!(F&F))))&(!(T&(!(j&F))))))|(!(t|T)))))).
+A: Let's think step-by-step.","The portions of the formula that contain `T|T` or `T&T` will simply evaluate to `T` because either True `OR` True and True `AND` True is always `T`.
+
+So, the simplified portion becomes `(T | (T & T)) & (T & (T & !((!(!(!F)) & !(T&!j&F)) | !t|T))))`.
+
+We know that `T&!J&F` can be only two potential cases. Either `J` is `T`, in which case `!J` is `F` so the whole expression equates to `F`. Or `J` is `F`, in which case `!J` is `T`, but we still get `F` because `F` `AND` any other value is `F`. Hence, the `T&!J&F` can be replaced by `F`, and the whole expression simplifies to `(T | T) & (T & (T & !((!(!(!F)) & !F) | !t|T)))`.
+
+Since `F&F` simplifies to `F` and `!F` simplifies to `T`, the expression now becomes `(T | T) & (T & (T & !((!(!T)) & T) | !t|T))`.
+
+If we negate `(!T)` it becomes `F`, hence the expression becomes `(T | T) & (T & (T & !(F&T) | !t|T)`. 
+
+Following this, `F&T` simplifies to `F` and `!(F)&T` simplifies to `T`. Thus, the simplified expression is `(T | T) & (T & T & T | !t | T))`.
+
+Now, T OR anything else is always T. Also, T AND anything else is that anything else. So, the simplest expression is `!t | T` which is always `T`. 
+
+So, the entire given logic formula simplifies to `T`.",T,T
+4,logic,self_consistency,((z&((F|(((T&(((s|s)|s)&F))|F)&T))|F))|(T&(T&((!(w|(s|(T|((u&F)|F)))))|F)))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((z&((F|(((T&(((s|s)|s)&F))|F)&T))|F))|(T&(T&((!(w|(s|(T|((u&F)|F)))))|F)))).
+A: Let's think step-by-step.","1. Since 'F' means False and False OR anything equals to anything itself ((F|any_value) = any_value), we can remove all ""(F|...)"". Also 'T' is for True and True AND anything equals to anything itself ((T&any_value) = any_value). We can remove all ""(T&...)"". So the equation becomes
+
+((z&(((s|s|s)&F)|F))|(T&(!((w|s|T)|u&F)))).
+
+2. (s|s|s) simplifies to s. Also (u&F) equals to F (F&any_value) = F) and anything OR False is anything. So
+
+    (((s|s|s)&F)|F) simplifies to ((s&F)|F) and
+    (!((w|s|T)|u&F)) simplifies to (!(w|s|T|F)).
+
+3. However, anything OR True is always True (any_value | T = T), so (!(w|s|T|F)) simply means False (!T). Then, (s&F) also means False (F&any_value = F), so our formula simplifies to 
+
+    (z&F | T&False) = F | False = False.
+
+So, the entire logic formula is equivalent to 'False.'",F,F
+5,logic,self_consistency,(!(((((((((l&l)|(l&T))|l)|F)&(l|(l|(F&F))))|T)|F)&T)|(!(((!T)|T)&F)))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(!(((((((((l&l)|(l&T))|l)|F)&(l|(l|(F&F))))|T)|F)&T)|(!(((!T)|T)&F)))).
+A: Let's think step-by-step.","Firstly, any literal OR with True, is always True: 
+
+(((((((((l&l)|(l&T))|l)|F)&(l|(l|(F&F))))|T)|F)&T)|(!(((!T)|T)&F))))
+
+= T | (!(((!T)|T)&F))) 
+
+= T 
+
+Any value OR with True, is always True. So, no matter what the rest is, the formula will always result in True. Thus, the simplified formula is:
+
+T",T,F
+6,logic,self_consistency,((q&T)|(((!F)&((T&(T|T))&(((m&T)&((((F&F)|T)&F)|(F&(T&(i&F)))))|T)))|(F&F))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((q&T)|(((!F)&((T&(T|T))&(((m&T)&((((F&F)|T)&F)|(F&(T&(i&F)))))|T)))|(F&F))).
+A: Let's think step-by-step.","Firstly, know that any statement logically anded with False (F) will be False and logically ored with True (T) will be True. Also, not False (!F) will be True.
+
+This implies that (!F) simplifies to True (T), (F&F) simplifies to False (F), and (T&(T|T)) simplifies to True (T).
+
+So, we can now simplify your given expression as following:
+
+((q&T)|(T&((m&T)&(((F|T)&F)|F))|T)) or ((q&T)|(T&((m&T)&(F|F))|T)) or  ((q&T)|(T&((m&T)&F)|T)).
+
+Since T | T... will be T, we can further simplify above expression as following:
+
+(q&T)|(T&T)|T which is then further simplifiable to (q&T)|T. 
+
+Since any statement logically ored with True (T) will be True (T), we can further simplify above expression as just T.",T,T
+7,logic,self_consistency,(((((n|((n|(F&((F|T)&F)))|F))|(F&(!((((p&p)&T)|T)|F))))|n)|((F&F)&T))&(n|F)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(((((n|((n|(F&((F|T)&F)))|F))|(F&(!((((p&p)&T)|T)|F))))|n)|((F&F)&T))&(n|F)).
+A: Let's think step-by-step.","1. ((F|T)&F) will always be F because anything ORed with T equals to T and then ANDed with F gives False. Hence, the formula will become (((n|((n|F)|F))|(F&!(((p&p)&T)|T)))|n)|((F&F)&T))&(n|F).
+
+2.  (n|F) is always n because anything ORed with F equals itself. (((n|(n|F))|(F&!(((p&p)&T)|T)))|n)|((F&F)&T))&(n|F) will become ((n|n)|(F&!(((p&p)&T)|T)))|n, which simplifies to (n|(F&!(((p&p)&T)|T)))|n.
+
+3. ((F&F)&T) will always be F because F ANDed with anything equals to F. So, the formula becomes (n|(F&!(((p&p)&T)|T)))|n & n.
+
+4. (((p&p)&T)|T) is always T because anything ORed with T results in T and so does !T will give F. So, the formula is (n|F)&n = n&n = n.",n,n
+8,logic,self_consistency,((t&(((T&F)&(((f|(((f|f)&(f|f))&f))|T)&((T&(!(!F)))&T)))|T))|((t|(!T))|t)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((t&(((T&F)&(((f|(((f|f)&(f|f))&f))|T)&((T&(!(!F)))&T)))|T))|((t|(!T))|t)).
+A: Let's think step-by-step.","1. (T&F) = F, because True AND False gives False. 
+2. (!F) = T, because NOT False gives True.
+3. (T&(!(!F))) = T&T = T, because True AND True gives True.
+4. [[[f|(((f|f)&(f|f))&f)]|T] = T, because anything OR True gives True.
+5. ((t&[[(F)&(T)]]|T)) = T, because t AND False OR true gives True. 
+6. (t|(!T)) = t|F = t, because anything OR NOT True gives that same thing.
+
+So the simplified expression is (T|t) which equals T, because anything OR True is always True.",T,t
+9,logic,self_consistency,((((k|(l&(!(((m&(m&T))&(m|(f&F)))|T))))&F)&F)|(F|((F&((p&(!(T&T)))|T))&F))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((((k|(l&(!(((m&(m&T))&(m|(f&F)))|T))))&F)&F)|(F|((F&((p&(!(T&T)))|T))&F))).
+A: Let's think step-by-step.","1. Any logic formula & with False (F) is always False:
+((((k|(l&(!(((m&(m&T))&(m|(f&F)))|T))))&F)&F)|(F|((F&((p&(!(T&T)))|T))&F))) => F
+
+So the whole equation simplifies to False (F).",F,F
+10,logic,self_consistency,((((((n&T)&n)&T)|(n&(F|(((!((!F)|F))|T)&(T|(F&(p&(F|F))))))))|(n|F))|(T&F)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((((((n&T)&n)&T)|(n&(F|(((!((!F)|F))|T)&(T|(F&(p&(F|F))))))))|(n|F))|(T&F)).
+A: Let's think step-by-step.","1. !F is always T and F|F is always F. So, we can substitute these values. The expression becomes:
+
+    (((((n&T)&n)&T)|(n&(F|((!T|T)&(T|(F&(p&F)))))))|(n|F))|(T&F))
+
+2. Now, examining some more basic logical operations:
+    - !T equals F
+    - T|T equals T
+    - F&x equals F (for any x values)
+   
+    Substituting these values, the expression becomes:
+  
+    (((((n&T)&n)&T)|(n&(F|(F&T))))|(n|F))|F) 
+
+3. Now, we can substitute T&T equals T, and F|F equals F, which gives us:
+
+    (((((n&T)&n)&T)|(n&(F|F)))|(n|F))|F)
+
+4. We can substitute F|F equals F, T&n equals n, n&n equals n, to give:
+
+    (((n&n)&T)|n)|F
+
+5. Now, we redraw the expression to show the equivalences, and replace n&n with n:
+
+    n T & |
+    \-  -/
+    n | F
+
+6. Finally, n|F equals n, so the final, simplified expression is:
+
+   n
+
+So, the entire complex logical formula simplifies to just ""n"".",n,n
+11,logic,self_consistency,((i|((s|(T&F))&F))&(((i|((i&(T|(T|(T&(T|T)))))|(((v&((!F)|T))&v)&F)))|i)|F)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((i|((s|(T&F))&F))&(((i|((i&(T|(T|(T&(T|T)))))|(((v&((!F)|T))&v)&F)))|i)|F)).
+A: Let's think step-by-step.","Firstly, the logical ""and"" with False (&F) gives False irrespective of the other operand. Similarly, the logical ""or"" with True (|T) gives True irrespective of the other operand. Also, logical ""not"" of False (!F) gives True.
+
+From these rules above, in the formula we can simplify expressions: T&F to F, s|F to s, !F to T, and v&T to v.
+
+So the original formula reduces to:
+
+(i|(s&F)&(i|(i&(T|T|T&T)|v&F)|i|F)
+
+Which simplifies to:
+
+(i|F)&(i|i|v&F|i|F)
+
+We can note that the logical ""or"" operation with the same literals (a|a,|...|a) simplifies to a single literal (a). Also, logical operation between any literal with True  gives a True. From these rules we have:
+
+(i)&(i|v&F|i)
+
+Then this further simplifies to:
+
+i&(i|F)
+
+This simplifies to:
+
+i&i
+
+Which further simplifies to:
+
+i. 
+
+So the simplified form of the original logical formula is ""i"".",i,i
+12,logic,self_consistency,((!((((((b|(!F))&F)|T)|T)|T)|T))&(!(((!(F&(T|(F|((!T)|(!T))))))&T)&T))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((!((((((b|(!F))&F)|T)|T)|T)|T))&(!(((!(F&(T|(F|((!T)|(!T))))))&T)&T))).
+A: Let's think step-by-step.","Firstly, remember some basic rules:
+
+1) Anything OR True (!X | T) = True (T).
+2) Anything AND False (X & F) = False (F).
+3) Not False (!F) = True (T).
+4) Not True (!T) = False (F).
+
+Let's go step-by-step through your expression:
+
+1) ((b|(!F))&F)|T simplifies to F|T, which further simplifies to T.
+
+2) (F&(T|(F|((!T)|(!T))))) simplifies to F&1, which is equal to F.
+
+3) (!(F)) simplifies to T.
+
+So, your complex expression simplifies to: ((!(T))&(T)), which is equivalent to F&T, which simplifies to False (F).",F,F
+13,logic,self_consistency,(((b&(b&b))|F)&((F|(((h|((((h|F)|h)&T)&T))|T)&(((o|((T|(T&T))|F))|T)&T)))|F)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(((b&(b&b))|F)&((F|(((h|((((h|F)|h)&T)&T))|T)&(((o|((T|(T&T))|F))|T)&T)))|F)).
+A: Let's think step-by-step.","1. (b & (b & b)) - Since 'b & b' is just 'b', It boils down to 'b & b', hence this reduces to 'b'.
+2. (F | any_statement) - Always results in the value of the any_statement. Thus, the ""F"" can be ignored in the formula.
+So the above formula simplifies to '(b) & ((h | h & T & T) & (o | T | F) & T | F)'.
+
+1. (h | h & T & T) - As 'h & T & T' simplifies to 'h' and 'h | h' simplifies to 'h', this part reduces to 'h'.
+2. (o | T | F) - Any statement OR'ed with True always results in True. So it simplifies to 'T'. 
+3. (& T | F) - Since operation with True doesn't change the value, and F can be ignored in logical OR, this part is removed.
+
+Overall, the logic formula simplifies to '(b) & (h) & T', which is basically 'b & h'.",'b & h',b
+14,logic,self_consistency,(((d&(h|(q|(((g|((g&T)|(g&g)))|((g|F)|g))|T))))|((T|(F|(T&(F|F))))&F))&(T|T)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(((d&(h|(q|(((g|((g&T)|(g&g)))|((g|F)|g))|T))))|((T|(F|(T&(F|F))))&F))&(T|T)).
+A: Let's think step-by-step.","1. ""T"" & ""F"" operations: Since ""X"" & ""T"" = ""X"" and ""X"" & ""F"" = ""F"", we can simplify the expression as follows: 
+   (d & (h | (q | ((g | (g | g)) | T))) | (False) & True
+2. ""T"" & ""F"" operations:
+   = d & (h | (q | (g | T))) or False
+3. ""X"" | ""T"" operation:  In addition, ""X"" | ""T"" = ""T"", we have:
+   = d & (h | (q | T)) or False
+4. ""X"" | ""T"" operation:
+   = d & (T) or False
+5. ""X"" & ""T"" operation:
+   = d or False
+6. ""X"" or ""F"" operation: Finally, the ""X"" or ""F"" = ""X"", our final logical expression is just ""d"".",d,d
+15,logic,self_consistency,((f&((((f|f)|F)&T)|(T&(((((f|(F&F))|f)|T)|(T|(F|(F|(T|F)))))&F))))&(!(T&F))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((f&((((f|f)|F)&T)|(T&(((((f|(F&F))|f)|T)|(T|(F|(F|(T|F)))))&F))))&(!(T&F))).
+A: Let's think step-by-step.","1. We start with constants first. F&F is still F, F | F is also F, whereas T | F is T, and ! (T & F) simplifies to T since T & F is F and ""not false"" is true. 
+
+2. Further simplifying, we know that f | F will always be equal to f since anything ""or"" false gives you the first quantity. Similarly, anything ""and"" true gives you the first thing, hence F & T is just F. Hence, we simplify:
+
+   The simpler form of ((f | F & F) | f) becomes (f | f) which equals f. 
+
+   (((f|f)|F)&T) simplifies into (f & T) which equals f because anything ""and"" true gives you the first thing. 
+
+   Another segment: (T|(F|(F|(T|F)))) simplifies into T, because anything ""or"" true is always true. Therefore, the sub-expression within the inner most bracket T & ((f | (F&F)) | f) simplifies to T & f which in turn simplifies to f since anything ""and"" true equals the preceding operand.
+
+3. Continuing with the simplification:
+
+    The segment ((f&((((f|f)|F)&T)|(T&f))) simplifies to (f & (f | f)) because (f & T) or (T&f) is just (f | f), which equals f. 
+
+    The final simplification: (f & f) & T simplifies to f&T which ultimately simplifies to just f (since anything ""and"" true equals the first operand).
+
+So the simplified form of the complex logical expression is just f.",f,f
+16,logic,self_consistency,((T|((!F)&((((x|(x&(T|(!F))))&x)|F)|(T&(F|((F|(!(c&F)))|T))))))|(F&(F|T))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((T|((!F)&((((x|(x&(T|(!F))))&x)|F)|(T&(F|((F|(!(c&F)))|T))))))|(F&(F|T))).
+A: Let's think step-by-step.","1. (!F) = T, because negation of False is True. Substitute (!F) with T.
+
+    ((T|((T)&((((x|(x&(T|T))))&x)|F)|(T&(F|((F|(!(c&F)))|T))))))|(F&(F|T))
+
+2. (T|T) = T, because T OR anything is always T. So consider all (T|T) as T and (F|T) as T.
+
+    ((T|((T)&((((x|(x&T)))&x)|F)|(T&(T))))|(F&T)
+
+3. (c&F) = F, because anything AND False is always False. Let's substitute (c&F) with F.
+
+    ((T|((T)&((((x|x))&x)|F)|(T&T))))|F
+
+4. (((x|x))&x) = x, because x OR x is x, and x AND x is x. 
+
+    ((T|(T&(x|F)|T))|F
+
+5. (x|F) = x, because x OR False is always x. 
+
+    ((T|(T&x|T))|F
+
+6. (F&T) = F, because False AND anything is always False, and 
+
+    ((T|(T&x)|T)
+
+7. (T|F) = T, because True OR anything is always True.
+
+    T|(T&x)|T
+
+8. (T|x) = T, because True OR anything is always True.
+
+    T|T|T
+
+9. (T|T) = T, as True OR True is always True. 
+
+So the answer is T (True).",T,T
+17,logic,self_consistency,((!((d|F)&(((!((e&(e|(F&F)))&F))&F)&((F|(T&(((F&T)&T)&F)))|F))))|(!(!F))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((!((d|F)&(((!((e&(e|(F&F)))&F))&F)&((F|(T&(((F&T)&T)&F)))|F))))|(!(!F))).
+A: Let's think step-by-step.","1. First simplify F&F and F&T, both gives F (False AND False = False, False AND True = False).
+2. Now simplify e|(F&F) which is effectively e|F, It gives e (e OR False = e).
+3. Now simplify e&e which also gives e (e AND e = e). 
+4. Now we can simplify !((e&(e|(F&F)))&F) which is effectively !(e&F), and it gives T (NOT(False) = True) because ANYTHING AND False is False.
+5. Now, we simplify ((!(e&F))&F) which effectively is T&F and it gives F.
+6. ((F&T)&T)&F gives F. 
+7. T&(((F&T)&T)&F) gives T&F which is F.
+8. Therefore F|(T&F) gives F OR F which is F.
+9. Now, d|F simplified to d (d OR False = d).
+10. Therefore, (!((d|F)&F&F)) simplifies to !F which is T.
+11. Finally we have !(!F) which is T.
+
+This simplifies the formula to T|T which is T. 
+
+So, the entire function simplifies to True.",T,T
+18,logic,self_consistency,(((((T|(F|((F|((F&F)&(F&T)))|((T&F)|T))))&T)|(!(T|(T|(!T)))))&F)&((F&F)|T)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(((((T|(F|((F|((F&F)&(F&T)))|((T&F)|T))))&T)|(!(T|(T|(!T)))))&F)&((F&F)|T)).
+A: Let's think step-by-step.","1. Unnecessary grouping and duplicate operations can be removed from the formula, so this step can simplify the innermost operations first.
+
+2. Replace (F&F) with F and (F&T) with F (since False and anything is always False), and keep the T because True and anything is always equal to the anything. Then the formula can be rewritten as: 
+
+((((T|(F|((F|F)|((T&F)|T))))&T)|(!(T|(T|(!T)))))&F)&((F&F)|T)).
+
+3. Remove the unused operations. (F|F) simplifies to F, and replace (T&F) with F (since False and anything is always False). After this, the formula can be rewritten into:
+
+(((T|F)&T)|(!(T|!T))&F)&((F|T)).
+
+4. Now simplify the formula resulted by replacing T|F with T, and T|!T with T because True OR anything is always True. The formula can be simplified into:
+
+((T&T)|(!T&F))&T.
+
+5. And &T can be removed again. Replace T&T with T and !T&F with F because False and anything is always False. Therefore, the formula can be simplified even further into:
+
+(T|F)&T.
+
+6. Simplify by T|F with T, therefore the logic formula simplifies into:
+
+(T)&T.
+
+7. Remove unnecessary ""&T"" because True and anything is always equal to the anything. This results in the formula equal to T which is True. 
+
+So, formula simplifies to True.",True,F
+19,logic,self_consistency,((((((((!T)&(((!T)&T)&(!(F&T))))&(F&T))|F)&(r|(T|T)))|F)&T)|(p&((F&T)&F))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((((((((!T)&(((!T)&T)&(!(F&T))))&(F&T))|F)&(r|(T|T)))|F)&T)|(p&((F&T)&F))).
+A: Let's think step-by-step.","1. (!T) is False since T is True and negating True gives False. 
+2. (F&T) is False since F is False and logical AND with False yields False. 
+3. Thus, the given formula can be simplified as ((r|(T|T)))|F)&T)|(p&False).
+
+4. After simplifying T|T = T and p&False = False, we get (r|T)|T)|(False), which simplifies down to (r or True) or False which simplifies down to True.
+
+So, the simplified form of the given logic formula is True.",True,F
+20,logic,self_consistency,(!((F|(T&(((F|F)&((F&(F&(T&F)))&(!((F|F)&T))))&T)))|(F|(T|(F|(!T)))))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(!((F|(T&(((F|F)&((F&(F&(T&F)))&(!((F|F)&T))))&T)))|(F|(T|(F|(!T)))))).
+A: Let's think step-by-step.","1. Simplify from inside the brackets with boolean identities:
+    - Any value AND with False (F) gives False
+        For example: (F&(F&(T&F))) is equal to F
+    - Any value OR with False (F) gives the value itself
+        For example: (F|F) is equal to F
+    - Any value AND with True (T) gives the value itself
+        For example: T&F is equal to F
+    - Any value OR with True (T) gives True
+        For example: T|F is equal to T
+  
+   Thus, the expression (F|(T&(((F|F)&((F&(F&(T&F)))&(!((F|F)&T))))&T))) simplifies to:
+   (F|(T&(F&T))), further simplifies to (F|F) which is F.
+
+2. Notice the second expression is (F|(T|(F|(!T)))). Here, !T is equal to F and T OR F is always T. Therefore, the whole expression simplifies to T.
+
+3. The original expression we have is: (!(F))|T, which is equal to T. 
+
+Therefore, the simplified expression is T.",T,F
+21,logic,self_consistency,((!(T&((!(k&(x&(F&(T|F)))))&F)))&((T&((!((!(T&((T&T)&(F&F))))|F))&T))&T)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((!(T&((!(k&(x&(F&(T|F)))))&F)))&((T&((!((!(T&((T&T)&(F&F))))|F))&T))&T)).
+A: Let's think step-by-step.","1. Simplify T|F in the first segment, which results in T as True or False always results in True.
+
+2. Thus, F&T simplifies to F as False and any other value always results in False.
+
+3. Again, x&F also simplify to F using the same logic.
+
+4. Now, k&F simplifies to F.
+
+5. As a result, !(k&F) simplifies to T as not False is always True.
+
+6. Now, T&F simplifies to F as True and False always results in False.
+
+7. As a result !(T&F) simplifies to T i.e, not False is True.
+
+8. Now, We have F&F in the second segment, which simplifies to F.
+
+9. T&F simplifies to F using the same logic as in step 2.
+
+10. Now, !(T&F) simplifies to T.
+
+11. As a result, we have T|F, which simplifies to T as True or False always results in True.
+
+12. Then, !T simplifies to F as not True is False.
+
+13. We again have T&F, which simplifies to F.
+
+14. As a result, !(T&F) simplifies to T.
+
+15. Now, T&T simplifies to T as True and True always results in True.
+
+16. Now as we have two Ts we are left with T&T which again gives T since True and True is always True.
+
+Therefore, the logic formula simplifies to True.",T,F
+22,logic,self_consistency,((((a|(a&((a&(!F))&(T|(((d&d)|F)|(T&(b|T)))))))&a)|a)&(a&(a&(!(F|(T&F)))))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((((a|(a&((a&(!F))&(T|(((d&d)|F)|(T&(b|T)))))))&a)|a)&(a&(a&(!(F|(T&F)))))).
+A: Let's think step-by-step.","1. We have !F (not False) which is True.
+2. F|(T&F) is equivalent to F|False, which means False. So we have !(False) which can be simplified to True.
+3. T|(((d&d)|F)|(T&(b|T))) is True because T OR something else will always be True.
+4. (a&((a&True)&True)) can be simplified to a&a&a = a. 
+
+So, the full equation becomes:
+
+((((a|(a&a))&a)|a)&(a&(a&True))).
+
+Continuing with the simplification,
+
+5. (a|(a&a)) simplifies to a.
+6. Hence, (((a&a)&a)|a)&(a&a) simplifies to a as anything AND'd with itself still holds the same value.
+7. So, the whole equation simplifies to just `a`.",a,a
+23,logic,self_consistency,(((((f|f)&f)&(f&(((f&(f|F))|f)|((f|((T|(F|F))&(T&(F|F))))&f))))&f)|((f&T)&f)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(((((f|f)&f)&(f&(((f&(f|F))|f)|((f|((T|(F|F))&(T&(F|F))))&f))))&f)|((f&T)&f)).
+A: Let's think step-by-step.","1. f | f = f (As the Logical OR of the same value is the value itself).
+2. T | F = T (As the Logical OR of True with any value is always True).
+3. F | F = F (As the Logical OR of False with any value is always False).
+4. T & F = F (As the Logical AND of False with any value is always False).
+5. f & F = F (As the Logical AND of False with any value is always False).
+
+Then, we plug in these results reduces given formula:
+
+((((f&f)&(f&(((f&f)|f)|((f&(T&F))&f))))&f)|((f&T)&f)) = 
+((((f&f)&(f&(((f&f)|f)|((f&F)&f))))&f)|((f&T)&f)) = 
+((((f&f)&f)&f)|((f&T)&f)).
+
+6. f & f = f (As the Logical AND of the same value is the value itself).
+7. f & T = f (As the Logical AND of True with any value is that value itself).
+
+So, our formula now is: 
+(f&f)|((f&T)&f) = 
+f|f = 
+f (As the logical OR of the same values is the value itself).
+
+Therefore, the given complex logic formula simplifies to ""f"".",f,f
+24,logic,self_consistency,(!((T|F)|(((((F&(T|(T|T)))|F)|((l|(T|((T|F)&(!F))))|T))|F)|(F&(F&T))))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(!((T|F)|(((((F&(T|(T|T)))|F)|((l|(T|((T|F)&(!F))))|T))|F)|(F&(F&T))))).
+A: Let's think step-by-step.","1. Simplify T|F -> This is always True (T), because True OR anything is always True.
+2. Simplify T|T -> This is also always True (T), because True OR True is always True.
+3. Simplify T|(T|T) -> This is again True (T) based on similar reasoning.
+4. Simplify F&T -> This is always False (F), because False AND anything is always False.
+5. Simplify F&(T|F) -> This is False (F) because False AND anything is always False.
+6. Simplify T|((T|F)&(!F)) -> The inside brackets simplify to T&(!F). If we don't any information about F, this can either be True or False. However, the entire expression is T OR (this), which means it is always True.
+7. Simplify F&(F&T) -> This is False (F) because False AND anything is always False.
+8. Simplify !F -> If we don't know anything about F, this expression can either be True or False.
+Now, the entire expression (!((T|F)|((((F&(T|(T|T)))|F)|((l|(T|((T|F)&(!F))))|T))|F)|(F&(F&T)))) simplifies to:
+9. !((T)|(((F)|F)|((l|T)|T))|F) | F) -> !T which is False(!F), because not True is always False.",False,F
+25,logic,self_consistency,((F&((((((((n|n)&T)&((T|F)|T))&F)&F)|(((!T)|F)|F))|T)&T))|(((T|(!F))&T)&F)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((F&((((((((n|n)&T)&((T|F)|T))&F)&F)|(((!T)|F)|F))|T)&T))|(((T|(!F))&T)&F)).
+A: Let's think step-by-step.","First, simplifying the innermost parentheses:
+- (T|F) = T as anything OR False is the original thing itself and anything OR True is True
+  => ((T|F)|T) = T
+- (!T) = F and (T|(!F)) = T
+  => (!((!T)|F)|F) = F
+- (n|n) = n as anything OR itself is itself
+  => (((n|n)&T)&((T|F)|T)) = n 
+- ((F&n&F)&F) = F since any AND statement with False will be lastly False 
+- ((((((F&n&F)&F))|((F)|F))|T)&T) = T because statement with OR True in end will be True
+- (((T)&T)&F) = F because in any AND statement with False will be lastly False
+
+Finally, in ((F&T)|F) = F because any AND statement with False is False and anything OR False is the original itself.",F,F
+26,logic,self_consistency,((h&(T|T))|(((((h|(((h&(h|F))|F)|h))&T)&((m&(((a&(a&T))&T)&F))|T))&(T&T))|h)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((h&(T|T))|(((((h|(((h&(h|F))|F)|h))&T)&((m&(((a&(a&T))&T)&F))|T))&(T&T))|h)).
+A: Let's think step-by-step.","1. T|T = T, so (h&(T|T)) simplifies to h&T. However, x&T, where x is any boolean value, results in x. Therefore, h&T simplifies to h.
+
+2. (h|(h|F)) simplifies to h, because h|x, where x is any boolean value, results in the value h if h is True. If h is False, then the result will be the boolean value of x. Therefore, h&(h|F) simplifies to h. Now, (h&h) by following same logic simplifies to h. Adding F to that h|h simplifies to h as well.
+
+3. a&T, results in a. Therefore (a&(a&T))&(T&T) simplifies to a.
+
+4. m&a whenever a is F because anything with F simplifies to F. That makes your second big clause ((m&F)|T) which becomes T by adding T clause.
+
+5. (T&T) is T.
+
+6. Your entire formula simplifies to: (h|(T|h)) which can be reduced further to T.",T,h
+27,logic,self_consistency,(!((T&T)|(((T&(!((((q|F)&T)|((q|q)&T))|T)))&F)|((T|(!(F|(F|T))))&T)))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(!((T&T)|(((T&(!((((q|F)&T)|((q|q)&T))|T)))&F)|((T|(!(F|(F|T))))&T)))).
+A: Let's think step-by-step.","Starting with the constant values T (True) and F (False), we can simplify:
+
+T&T => T (True and True)
+
+T&(!F) => T (True and not False)
+
+T&F => F (True and False)
+
+F|T => T (False or True)
+
+T|T => T (True or True)
+
+So, we can rewrite the original formula as follows:
+
+!((T|(((T&(!((q|F)|T)))&F)|(T&T)))
+
+Following the facts we know:
+
+(!F) => T
+
+(T&F) => F
+
+(F|T) => T
+
+We get:
+
+!(T)
+
+In logic, the not operation applied to True gives False. So, the simplified logic formula is: 
+
+F (False)",F,F
+28,logic,self_consistency,((p&((p|F)|(((p&(((p&(p|p))&T)&(!((F&T)|F))))&T)&((!(T&T))|T))))|(F|(F&F))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((p&((p|F)|(((p&(((p&(p|p))&T)&(!((F&T)|F))))&T)&((!(T&T))|T))))|(F|(F&F))).
+A: Let's think step-by-step.","Firstly, remember that any value OR False is simply the value itself, and any value AND True is simply the value itself. Also, NOT True is False, and NOT False is True.
+
+Let's simplify the expression:
+
+- (F&T) results to False, since AND operator requires both the operands to be True to return True. So, !((F&T)|F) is simplified to !(F|F) which results to !F or True.
+
+- Then p&(((p&(p|p))&T)&True) simplifies to p&True which results to p.
+
+- Then, (p&((p|F)|p)) simplifies to (p&p) which will be p.
+
+- And (!(T&T))|T simplifies to !True or False, which with the OR operator results to T.
+
+- The whole expression therefore simplifies to: (p|F), which resulting to p.",p,p
+29,logic,self_consistency,(((T&T)&T)&(F|(((m&((((m&(m&m))&T)&((T&(F|T))|T))&(m&m)))&(!(!F)))|(F|T)))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(((T&T)&T)&(F|(((m&((((m&(m&m))&T)&((T&(F|T))|T))&(m&m)))&(!(!F)))|(F|T)))).
+A: Let's think step-by-step.","Starting from the innermost parentheses,
+
+1. (T&T) = T because True and True is True
+2. F | T = T because False or True is True
+3. (m & m) = m because anything and its same value equals the same value. 
+4. (T & (F|T)) = T because True and anything is always True
+5. (!(!F)) = T because !F = True and, then !True is False. 
+
+So the simplified logical formula would be 
+
+(T&(T|m)) = m because True and any value always results in that value.",m,T
+30,logic,self_consistency,((n&((((((n&n)|F)&T)|F)|(n&((((n|(p&F))|(T&(F&F)))|n)|F)))&T))|(((n&n)|F)&T)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((n&((((((n&n)|F)&T)|F)|(n&((((n|(p&F))|(T&(F&F)))|n)|F)))&T))|(((n&n)|F)&T)).
+A: Let's think step-by-step.","Firstly, for any value n (either True or False), n & n is equal to n, and n | F is also equal to n. So, we can simplify n & n and n | F to n.
+
+Then, the formula F & F will be always False and therefore T & (F & F) = T & F will also be always False. In the same way, p & F = False, and n | False = n. 
+
+Also, since & has higher precedence than |, n & T is equal to n. Meanwhile, for any value n (either True or False), T | F will be always True.
+
+Now, we can simplify the formula step by step:
+
+((n&((((((n&n)|F)&T)|F)|(n&((((n|(p&F))|(T&(F&F)))|n)|F)))&T))|(((n&n)|F)&T))
+
+= ((n&(((((n)|F)&T)|F)|(n&(((n|False)|(False))|n)|F)))&T))|(((n|F)&T))
+
+= ((n&((((n&True)|F)|(n&((n|False)|n)|F)))&T))|((n&True))
+
+= ((n&(((n|F)|(n&(n|n)|F)))&T))|n
+
+= ((n&((n|(n&n)|F))&T))|n
+
+= ((n&((n|n|F))&T))|n
+
+= ((n&(n|F))&T)|n
+
+= ((n&n)&T)|n
+
+= (n&T)|n
+
+= n|n
+
+= n
+
+So, the simplified logic formula is just n.",n,n
+31,logic,self_consistency,((((((((((t|F)|t)|t)|t)&t)&t)|F)|F)|t)|((F|(F&(T&(T|((!(F|(v|T)))&F)))))&F)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((((((((((t|F)|t)|t)|t)&t)&t)|F)|F)|t)|((F|(F&(T&(T|((!(F|(v|T)))&F)))))&F)).
+A: Let's think step-by-step.","Firstly, any value ""or"" False is just the value itself. So, we can simplify parts of the formula where ""|F"" occurs:
+
+((((((((((t|F)|t)|t)|t)&t)&t)|F)|F)|t)|((F|(F&(T&(T|((!(F|(v|T)))&F)))))&F))
+
+equates to -> 
+
+((((((((t|t)|t)|t)&t)&t)|t))|((F|(F&(T&(T|((!(F|(v|T)))&F)))))&F))
+
+Now let's think of the next simplification. Any value ""and"" with itself is just the value itself. So, we can simplify parts of the formula where ""t&t"" or ""v&v"" occurs:
+
+((((((((t|t)|t)|t)&t)&t)|t))|((F|(F&(T&(T|((!(F|(v|T)))&F)))))&F))
+
+equates to -> 
+
+((t|t))|((F|(F&(T&(T|((!(F|(v|T)))&F)))))&F))
+
+The next step, we remember that any value ""or"" with itself is just the value itself. So, we can simplify parts of the formula where ""t|t"" occurs:
+
+((t|t))|((F|(F&(T&(T|((!(F|(v|T)))&F)))))&F))
+
+equates to ->
+
+t|((F|(F&(T&(T|((!(F|(v|T)))&F)))))&F)
+
+Next, any value ""and"" with False is always False. We can simplify parts of the formula where ""&F"" occurs:
+
+t|((F|(F&(T&(T|((!(F|(v|T)))&F)))))&F)
+
+equates to ->
+
+t|(F&F)
+
+Now, any value ""and"" with False is always False:
+
+t|(F&F)
+
+equates to -> 
+
+t|F
+
+Finally, any value ""or"" with False is just the value itself. So, we can simplify the last part of the formula where ""t|F"" occurs:
+
+t|F 
+
+equates to ->
+
+t
+
+So, the entire formula simplifies to -> t.",t,t
+32,logic,self_consistency,((((i|(((i&(i|F))&(((y&y)|((y&y)|(y|F)))|T))&(F|T)))|(!(F|T)))|(F|F))&(i|i)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((((i|(((i&(i|F))&(((y&y)|((y&y)|(y|F)))|T))&(F|T)))|(!(F|T)))|(F|F))&(i|i)).
+A: Let's think step-by-step.","Firstly, we have some basic simplifications that we can do:
+- A | F = A (logical OR with false is equal to initial value)
+- A & T = A (logical AND with true is equal to initial value)
+- A & F = F (logical AND with false is always false)
+- A | T = T (logical OR with true is always true)
+- F | T = T (logical OR with false and true is true)
+- F | F = F (logical OR with two false values is false)
+- !F = T and !T = F (logical NOT just switches the value).
+
+Based on these rules we can start simplifying the given logic expression.
+
+We start from the most enclosed parts and simplifying the expression:
+
+- (i|F) = i
+- (y|F) = y
+- (F|T) = T
+- (y & y) = y
+- (F|F) = F
+
+Replace these in the initial expression:
+
+((((i|(((i&i)&(((y&y)|y)|T))&T))|(!T))|(F|F))&(i|i)).
+
+We can simplify more:
+
+- (y|y) = y
+- (i & i) = i
+- (i|i) = i
+- (i & T) = i
+- (i|y) = (i|y) (this cannot be simplified more without knowing the specific values of i and y)
+
+Replace these results into the expression:
+
+((((i|(i&((y|y)|T))&T))|(!T))|F)&i.
+
+Continuing:
+
+- (y|T) = T
+- (i|T) = T
+- (!T) = F
+- (T & T) = T
+- (T|F) = T
+
+We now replace these results:
+
+((((i|T)&T)|F)|i). 
+
+Then, 
+
+- (i|F) = (i|F) (again, cannot simplify without knowing the specific value of i)
+- (T & T) = T
+
+After replacing above results, we get:
+
+T & i = i (which is the final simplified form of the given logic expression.)",i,i
+33,logic,self_consistency,((y|F)&(((y|((y&y)|(((((y|F)&y)&y)&(y&(u|(j|T))))&(y|F))))&(F|(!F)))&(y&y))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((y|F)&(((y|((y&y)|(((((y|F)&y)&y)&(y&(u|(j|T))))&(y|F))))&(F|(!F)))&(y&y))).
+A: Let's think step-by-step.","First, we will simplify the formula using the principles of Boolean algebra.
+
+1. y|F = y (the or operation always outputs the same value as the non-False value)
+2. y&y = y (the and operation always outputs the same value as the non-True value)
+3. ((y|F)&y) = y (according to the previous steps, the formula simplifies to (y&y), which equals y)
+4. (y&(u|(j|T))) = y (the or operation with True always outputs True, so this simplifies to (y&True), which equals y)
+5. (((y|F)&y)&y) = y (according to step 3, this simplifies to (y&y), which equals y)
+6. (((y|F)&y)&(y&(u|(j|T)))) = y (according to step 4, this simplifies to (y&y), which equals y)
+7. (F|(!F)) = T (the not operation flips the value of F to True, and using the or operation with True always outputs True)
+8. (y&(((((y|F)&y)&(y&(u|(j|T))))&(y|F)))&T) = y (according to step 6, this simplifies to (y&T), which equals y)
+9. ((y|F)&(((y|((y&y)|(((((y|F)&y)&y)&(y&(u|(j|T))))&(y|F))))&(F|(!F)))&(y&y)) = y (according to steps 1, 7 and 8, the formula simplifies to (y&y), which equals y)
+
+So, the simplified form of the given logical formula is y.",y,y
+34,logic,self_consistency,(((((j|(!T))&T)&((((j&T)&((((o|F)|(T&F))|F)|(T|(v|T))))&j)|j))&j)|((j&T)&j)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(((((j|(!T))&T)&((((j&T)&((((o|F)|(T&F))|F)|(T|(v|T))))&j)|j))&j)|((j&T)&j)).
+A: Let's think step-by-step.","1. (!T) = F (because 'not True' is False)
+2. ((o|F)|(T&F)) = (o|False) = (o|F) = o (Because any literal or False is the literal itself, and True and False is False)
+3. (T|(v|T)) = T (because T or anything is True)
+4. (j&j) = j (because any literal and its duplicate are the literal itself)
+5. (j&T) = j (because a literal and True equals to the literal itself)
+6. (j|(F&T)) = j (because False and any literal is False, and a literal or False is the literal itself)
+7. ((o|F)|(T&F))|F) = o (because o|F = o and T&F = F)
+8. (T|F) = T (because True or False is True)
+9. ((j|F)&T) = j (because j|F = j and j&T = j)
+10. ((((j&T)&o)&j)|j) = j
+So, the simplified formula is j.",j,j
+35,logic,self_consistency,((g|T)&(((d|(d&T))&(F|((p&(p|F))&(F&(((a&T)|a)&(((!F)&(T&T))&F))))))&(d&F))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((g|T)&(((d|(d&T))&(F|((p&(p|F))&(F&(((a&T)|a)&(((!F)&(T&T))&F))))))&(d&F))).
+A: Let's think step-by-step.","First, simplify (g|T), (d|T), (p|F), (F&(((a&T)|a)&(((!F)&(T&T))&F))), (!F), and (T&T). They are simplified to:
+
+(g|T) ->   T
+(d|T) ->   T
+(p|F) ->  p
+(F&(((a&T)|a)&(((!F)&(T&T))&F))) ->  F
+(!F) ->  T
+(T&T) -> T
+
+So, the formula becomes: ((T)&((T)&(p)&(F))&(d&F)). 
+
+The and operation with False will result in False, therefore, (d&F) and (T&F&F) are equal to F. The formula simplifies to: T&F&F.
+
+As a final step, T&F&F simplifies to F.",F,F
+36,logic,self_consistency,(((i&((h&F)&(((((T|F)|((T|F)&(T&T)))&T)&F)|((T|(F&F))|F))))&F)&((T|(F|F))&F)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(((i&((h&F)&(((((T|F)|((T|F)&(T&T)))&T)&F)|((T|(F&F))|F))))&F)&((T|(F|F))&F)).
+A: Let's think step-by-step.","1. The AND operation with F always yield F. Thus, the operations h&F, ((T|F)|((T|F)&(T&T)))&T)&F and ((T|(F&F))|F)&F become F.
+
+2. Therefore, we have (((i&F)&F)&F), which simplifies further to F because i&F is F, and with additional AND operations with F, it remains F.
+
+So, the simplified result is F.",F,F
+37,logic,self_consistency,((T&F)&((T|((y|(!(F&(T&((T|F)|T)))))|T))&(F&(T|((!(h|(((T&F)|T)|F)))&F))))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((T&F)&((T|((y|(!(F&(T&((T|F)|T)))))|T))&(F&(T|((!(h|(((T&F)|T)|F)))&F))))).
+A: Let's think step-by-step.","Firstly, you have T&F, which always equals False (F) because True and False results in False. 
+
+Secondly, you have the nested expression (!F&(T&((T|F)|T))), and you can simplify this by doing the following steps:
+(!F) is True. ((T|F)|T) is True (since T or F (or anything) is always True). Therefore, the whole expression simplifies to True&True, which is True. So, y or !True results in y or False, which simplifies to y, because anything or False always equals the first thing. 
+
+Lastly, you have the nested expression (!(h|(((T&F)|T)|F))). This simplifies as follows:
+(T&F) is False. ((((T&F)|T)|F)) simplifies to False or T or F, which is T. So h or T simplifies to T, and not T (i.e., !T) is F. (T|F) is T. Therefore, F&T results into F.
+
+So overall, the initial logic formula simplifies to:
+(F&(T|F)) = F. (True or False always equals True, but True and False always equal False, so ultimately this simplifies to F.) This means the whole expression equals F, or False.",F,F
+38,logic,self_consistency,(((d|((T&(!((F|(T&(T|T)))|F)))&T))|(F&((w|(!(!(!((F|F)|T)))))|T)))|(!F)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(((d|((T&(!((F|(T&(T|T)))|F)))&T))|(F&((w|(!(!(!((F|F)|T)))))|T)))|(!F)).
+A: Let's think step-by-step.","First, we will take any place with 'T' or 'F' and simplify those areas because they are constant values.
+
+- (!((F|(T&(T|T)))|F)) simplifies as follows: inside the parentheses, F|anything is always equivalent to that thing; T&(T|T) further simplify to T&T and finally to T, and therefore this part simplifies to ((!T)) which gives us F.
+
+- (!(!(!((F|F)|T)))) simplifies as follows: (F|F) is F and (F|T) is T and negation of T is F. Applying double negation law, this part simplifies to T.
+
+- (F&w) is equivalent to F because anything logical AND with False gives False.
+
+- (!F) is T because negation of False returns True.
+
+So the full equation simplifies to ((d | ((T&F)&T)) | (F & (w | T)) | T). 
+
+Second, we will simplify the rest of the formula:
+
+- Anything AND with False gives False so ((T&F)&T) simplifies to F.
+
+- Since the AND operation is commutative, we can switch (w | T) to (T | w), and anything OR with True gives True, the expression simplifies to True.
+
+The final simplified formula is: ((d | F) | F) | T which further simplifies to d | T. Since anything OR with True gives True, this whole expression simplifies to True.",T,T
+39,logic,self_consistency,((a&((!(!(T|(g|T))))|(T|(F&(T|((F|(T|T))|(!((F&F)|(g&F)))))))))|((a|a)&T)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((a&((!(!(T|(g|T))))|(T|(F&(T|((F|(T|T))|(!((F&F)|(g&F)))))))))|((a|a)&T)).
+A: Let's think step-by-step.","Firstly, we have several simplifications we can apply:
+
+1. (T|(g|T)) = T (since anything OR'ed with True is True)
+2. (!(!(T))) = T (since double negation cancels out)
+3. (F|(T|T)) = T (since anything OR'ed with True is True)
+4. (a|a) = a (since anything OR'ed with itself is itself)
+5. (F&F) = F (since False AND'ed with anything is False) 
+6. (g&F) = F (since False AND'ed with anything is False)
+
+By applying these simplifications, our formula becomes:
+
+(a&((T)|(T|(F&T)))) | (a&T)
+
+1. (F&T)=F  (since False AND'ed with anything is False)
+2. (T|F) =T (since anything OR'ed with True is True)
+
+Then we finally have:
+
+(a&T)|(a&T)
+
+Which simplifies to:
+
+a&T
+
+So, your simplified logical expression is a&T.",a&T,a
+40,logic,self_consistency,((F|T)&((((F|(((((l|F)&l)&((T&F)|T))&F)&((F&T)|T)))|T)|((!(!T))&F))&(F&F))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((F|T)&((((F|(((((l|F)&l)&((T&F)|T))&F)&((F&T)|T)))|T)|((!(!T))&F))&(F&F))).
+A: Let's think step-by-step.","- First, we simplify F | T, T & F, and F & T. The first will always be True (T), the second always False (F), and the third also always False (F).
+So our statement becomes: 
+((T)&((((F|(((((l|F)&l)&(F|T))&F)&(F|T)))|T)|((!(!T))&F))&(F&F))).
+
+- Then, we focus on F & F, which is always False (F), and T & F which is always False (F). We then simplify F|T, which is always True (T).
+Our statement then becomes: 
+((T)&(((((T)&l)&F)&T)|T)|F)).
+(T & l) is equivalent to l and (F & T) is equivalent to F.
+
+- Now we simplify the statement further taking l & F into consideration, which is always False (F).
+Our statement now is: 
+((T)&((F&T)|T)|F).
+Since T&F is always False (F), we can further simplify it to: 
+((T)&(F|T)|F).
+F | T is always True (T) and T & T is just T.
+
+- Finally, our simplified statement is: T, because (T|F) is always True.",T,F
+41,logic,self_consistency,(!((n&F)&((((j|((F|T)&T))|F)&T)|(F&((F&(!((!(F&T))&(!(T&T)))))|T))))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(!((n&F)&((((j|((F|T)&T))|F)&T)|(F&((F&(!((!(F&T))&(!(T&T)))))|T))))).
+A: Let's think step-by-step.","Firstly, ""_"" & F = F for any value of ""_"" 
+
+So, we get:
+
+!((n&F)&((((j|((F|T)&T))|F)&T)|(F&((F&(!((!(F&T))&(!(T&T)))))|T))) = !(F&((((j|((F|T)&T))|F)&T)|(F&((F&(!((!(F&T))&(!(T&T)))))|T))))
+
+As the & operation with F is always F:
+
+!(F&((((j|((F|T)&T))|F)&T)|(F&((F&(!((!(F&T))&(!(T&T)))))|T)))) = !(F)
+
+""F"" is always False. ""!"" operator negates the value and hence gives True. 
+
+Therefore, the simplified logic formula is T (True).",T,T
+42,logic,self_consistency,((F|(T&((o|(T&(u|((!F)&((T|T)|(T|T))))))|(F&(F&(F&(s|T)))))))|(((F|T)|T)|F)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((F|(T&((o|(T&(u|((!F)&((T|T)|(T|T))))))|(F&(F&(F&(s|T)))))))|(((F|T)|T)|F)).
+A: Let's think step-by-step.","1. First, consider the formulas involving 'F' and 'T'. We have several logical operations to perform. Here's what we know:
+   
+   - 'F | x' is equivalent to 'x': if at least one of 'F' (False) or 'x' is True, the result is True, and since 'F' is False, the result identical to the value of 'x'.
+   - 'T & x' is equivalent to 'x': if both 'T' (True) and 'x' are True, the result is True, and since 'T' is always True, the result is simply the value of 'x'.
+   - '!F' is equivalent to 'T': negation flips the truth value, so not False is True.
+   - 'T | T' or any number of 'T' with OR operation is equivalent to 'T': if at least one is True the result is True, and since 'T' is always True, the result is True no matter how many times it is repeated.
+   - 'F & x' is equivalent to 'F': if both 'F' (False) and 'x' are True, the result is True, and since 'F' is always False, the result is False no matter the value of 'x'.
+
+2. Using those equivalences, we can simplify the given formula to:
+
+   '(T & (o | (T & (u | T)))) | T', which simplifies to,
+
+   '(o | (u | T)) | T'.
+
+3. The expressions '(u | T)' and '(o | T)' are True because they involve an OR operation with 'T'. The whole expression thus simplifies to 'T | T', which is just 'T'.
+   
+So, the simplified version of your formula is 'T' or True.",T,T
+43,logic,self_consistency,((T|(F&F))&(x&(((((((z&(z&T))&T)&T)|(F&(n|((F|F)|T))))|z)&T)&(((F&F)&F)&F)))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((T|(F&F))&(x&(((((((z&(z&T))&T)&T)|(F&(n|((F|F)|T))))|z)&T)&(((F&F)&F)&F)))).
+A: Let's think step-by-step.","Firstly, (F&F) equals F, so the formula can be rewritten as:
+((T|(F))&(x&(((((((z&(z&T))&T)&T)|(F&(n|(F|T))))|z)&T)&((F&F)&F))).
+
+Since the result of (T|F) equals T and (F|T) equals T, we can simplify this to:
+(T&(x&((((((z&(z&T))&T)&T)|(F&n))|z)&T)&F)).
+
+As (z&T) equals z (because & with T won’t change the value of the other operand) and (F&n) equals F (because & with F will give F), the formula can be rewritten as:
+(T&(x&(((((z&z)&T)&T)|F)|z)&T)&F).
+
+Again simplifying (z&z) to z gives:
+(T&(x&(((z&T)&T)|F)|z)&T)&F).
+
+And further simplifying (z&T) to z gives:
+(T&(x&((z&T)|F)|z)&T)&F).
+
+And further simplifying ((z&T)|F) to z, the formula becomes:
+(T&(x&z|z)&T)&F).
+
+As F&T equals F and Z|Z equals Z, and any expression & F equals F, the formula simplifies to:
+F.",F.,F
+44,logic,self_consistency,(!((((i|F)|T)&(((f|((((f|f)&(!F))|f)|F))&(T&(((g|F)&F)&T)))|T))|(F&T))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(!((((i|F)|T)&(((f|((((f|f)&(!F))|f)|F))&(T&(((g|F)&F)&T)))|T))|(F&T))).
+A: Let's think step-by-step.","1. We know that something OR False is the original value and something AND False is always False. Something OR True is always True and something AND True is the original value. Then we simplify the equations. Additionally, we know that the negation of the False is True and the negation of the True is False. Something OR itself or with its negation just simplifies to itself.
+
+        Thus: i|F simplifies to i, 
+           T&F simplifies to F,
+           f|f simplifies to f, 
+           !F simplifies to T, 
+           g|F simplifies to g, 
+           T&F simplifies to F,
+           F&T simplifies to F.
+           
+    We then get:
+    !((((i|T)&(((f|(((f&T)|f)|F))&((T&(g&F))&T)))|T))|(F&T)).
+
+2. Now, the simplifying step is repeated:
+
+        Thus: i|T simplifies to T, 
+           F&T simplifies to F, 
+           f|f simplifies to f,
+           f|F simplifies to f, 
+           g&F simplifies to F, 
+           f&T simplifies to f, 
+           T&F simplifies to F, 
+           F&T simplifies to F.
+           
+    Happen to us:
+
+    !((T&(((f|(f|f))&(T&F))&T)|T) | F).
+
+3. And again:
+
+        Thus: f|f simplifies to f, 
+           T&F simplifies to F, 
+           f&F simplifies to F,
+           F&T simplifies to F,
+           T|T simplifies to T.
+           
+    We then get:
+
+    !((T&(f&F)|T) | F).
+
+4. From there we simplify again:
+
+        Thus: f&F simplifies to F, 
+           T&F simplifies to F, 
+           F|T simplifies to T.
+           
+    Gets to us:
+
+    !(F|T).
+
+5. Finally, we simplify to:
+
+        Thus: F|T simplifies to T.
+
+    Which is:
+
+    !T.
+
+6. Lastly, we know that the negation of True is False. Thus, the final simplification is:
+
+    !T simplifies to F.
+
+So, the whole expression simplifies to F, or False.",F,F
+45,logic,self_consistency,((!(((s&T)&T)|T))&(F&((((p|(T&((d|(F|F))&F)))|(((((p&p)|F)&p)|p)|F))|T)&F))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((!(((s&T)&T)|T))&(F&((((p|(T&((d|(F|F))&F)))|(((((p&p)|F)&p)|p)|F))|T)&F))).
+A: Let's think step-by-step.","1. In the left side of the formula, because anything or true equals true, then !(((s&T)&T)|T) simplifies to !T, which equals F.
+
+2. In the right side of the formula, anything and false equals false, then F&((((p|(T&((d|(F|F))&F)))|(((((p&p)|F)&p)|p)|F))|T)&F) simplifies to F. 
+
+3. Therefore, the entire formula simplifies to F&F, which equals F.",F,F
+46,logic,self_consistency,((y|(y|y))|(y&((!(F|((((F|(T|F))|(F|(F&F)))|(F&F))&(s&F))))|(((g|T)&F)&F)))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((y|(y|y))|(y&((!(F|((((F|(T|F))|(F|(F&F)))|(F&F))&(s&F))))|(((g|T)&F)&F)))).
+A: Let's think step-by-step.","1. Repeating disjunctions or conjunctions of the same literal can be simplified to a single literal. Therefore, (y | (y | y)) simplifies to y.
+
+2. The disjunction of any literal with True is always True. Therefore, (F | (T | F)) simplifies to T.
+
+3. The conjunction of any literal with False is always False. Therefore, (s & F), ((g | T) & F) and (F & F), all simplify to F.
+
+4. Similarly, the disjunction of any literal with False is the literal itself. Therefore, (F | F) simplifies to F.
+
+5. Applying all these simplifications to the original logic formula, we get:
+y | ((y & !((F | T) | F)) | (F & F))
+= y | ((y & !(T)) | F)
+= y | ((y & F) | F)
+= y | (F | F)
+= y | F.
+
+5. And as stated before, a disjunction with False is the original literal itself. So, the final simplified logic formula is:
+y.",y,y
+47,logic,self_consistency,((((!T)&F)|F)|(T|((((r&(z|T))|T)|(F|(((x&x)&((x&T)&((x|x)&(F|T))))|T)))&T))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((((!T)&F)|F)|(T|((((r&(z|T))|T)|(F|(((x&x)&((x&T)&((x|x)&(F|T))))|T)))&T))).
+A: Let's think step-by-step.","1. (!T)&F: equates to F&F, which simplifies to F. This is because the logic ""Not T (false)"" is F and F & F = F.
+2. (((!T)&F)|F): equates to F|F, which simplifies to F because F | F = F.
+3. z|T: It equates to T because anything OR True = True.
+4. r&(z|T): equates to r&T, which simplifies to r because anything AND True is itself.
+5. (r&(z|T))|T: simplifies to r|T, which equates to T because anything OR True = True. 
+6. x&T: It equates to x because anything AND True is itself.
+7. (x|x)&(F|T): It simplifies to x&T, which is x because anything AND True is itself.
+8. ((x&x)&((x&T)&((x|x)&(F|T))))|T: This simplifies to T because anything OR True is always True.
+9. (F|(((x&x)&((x&T)&((x|x)&(F|T))))|T)): This simplifies to F|T = T because anything OR True is always True.
+10. ((((r&(z|T))|T)|(F|(((x&x)&((x&T)&((x|x)&(F|T))))|T)))&T)): This simplifies to T&T = T because anything AND True is always itself.
+11. ((((!T)&F)|F)|(T|((((r&(z|T))|T)|(F|(((x&x)&((x&T)&((x|x)&(F|T))))|T)))&T))): this simplifies to F|T = T because anything OR True = True.
+
+Therefore the simplified form of the given logic formula is T.",T,T
+48,logic,self_consistency,(((h|((h|F)&h))&F)&(((((((((n|n)|F)&(!(F&T)))&(F|T))&(w&F))&(!T))|F)|T)&F)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(((h|((h|F)&h))&F)&(((((((((n|n)|F)&(!(F&T)))&(F|T))&(w&F))&(!T))|F)|T)&F)).
+A: Let's think step-by-step.","First, simplify redundant logic, any symbols with themselves ""a | a"" will be ""a"" and ""a & a"" is ""a"". Therefore, (n|n) becomes n itself.
+
+Secondly, anything OR-ed with F will retain its value, it means that (a|F) will be a itself. Therefore, (h|F) becomes h.
+
+Thirdly, any logical operation AND-ed with F (false) will be F. Therefore, the whole expression ""h | ((h | F) & h)"" is F because it AND-ed with the F. Also, ""a & F"" will be F, it means that (w & F) will be F.
+
+Fourthly, anything OR-ed with T will be T. Therefore, ((a|T) will be T.
+
+Finally, any symbols AND-ed with F will be F, therefore all the long redundant expression ((((n|n)|F)&(!(F&T)))&(F|T))&(w&F))&(!T))|F)|T) will become F because it is AND-ed with F at the last.
+
+So, the simplified logic formula becomes F.",F,F
+49,logic,self_consistency,((T&T)&(((e|e)&(((T|(T&(((!F)&(T|F))&(F&T))))&T)&((((!T)|T)&F)&T)))&(F&T))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((T&T)&(((e|e)&(((T|(T&(((!F)&(T|F))&(F&T))))&T)&((((!T)|T)&F)&T)))&(F&T))).
+A: Let's think step-by-step.","1. First, T & T simplifies to T, so the expression becomes:
+(T&(((e|e)&(((T|(T&(((!F)&(T|F))&(F&T))))&T)&((((!T)|T)&F)&T)))&(F&T))
+
+2. The statement (e|e) is the same as saying e or e is true. Since this is a repetition, it simplifies to 'e'. The expression now becomes:
+(T&((e&(((T|(T&(((!F)&(T|F))&(F&T))))&T)&((((!T)|T)&F)&T)))&(F&T))
+
+3. (!F) or not false is always True. (T | F) or true or false is also always True. So, ((T|(T&(((!F)&(T|F))&(F&T))))) simplifies to True or True and (unknown value), which always results in True. The expression now becomes:
+(T&((e&(T&((((!T)|T)&F)&T)))&(F&T)).
+
+4. (!T) or not True is always False. (T | False) becomes True. However, this reduces to False when AND with F. True AND False results in False. The expression now becomes:
+(T&((e&(T&False))&(F&T)).
+
+5. T & False, regardless of the value of T, will always result in False. So, the expression becomes:
+(T&((e&False)&(F&T)).
+
+6. (e&False) simplifies to False, so now we have:
+(T&(False&(F&T)).
+
+7. Finally, we consider the (F&T) expression. It doesn't matter the value of T, False and T is always False. So, the expression becomes (T&(False&False)), which resolves to (T&False).
+
+8. Therefore, the final simplification of this complex logical expression is False.",False,F
+50,logic,self_consistency,(((!F)&((!F)|((z&(((T&((F|F)|(F&F)))|(!(F|T)))&(T|T)))|(T&(F|F)))))|(!T)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(((!F)&((!F)|((z&(((T&((F|F)|(F&F)))|(!(F|T)))&(T|T)))|(T&(F|F)))))|(!T)).
+A: Let's think step-by-step.","Firstly, we need to know the logic values of T and F. T is True and F is False. Thus:
+
+(!F) = not False = True.
+(!T) = not True = False. 
+
+Also, we know that anything OR False is itself, and anything AND False is False, anything AND True is itself. Hence,
+
+(F|F) = False or False = False.
+(F&F) = False and False = False.
+(T&T) = True and True = True.
+
+Replace these values in our formula:
+
+(((!F)&((!F)|((z&(((T&((F)|(F)))|(!(F)))))|(T&(F)))))|(!T))
+= ((True&((!F)|(z&(T&(False|False))|(!(F))))|(!T))
+= ((True&((True)|(z&(True&False)|True)))|False)
+= (True&(True|z&False|True)|False)
+= (True&True|False|False)
+= True or False = True
+
+Therefore, the simplified logic formula is True.",True,T
+51,logic,self_consistency,((((b&((r&((r&(!(F&T)))|F))|(T&(T&(!((b&F)|F))))))&(T|(!F)))|(b&T))|(b&b)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((((b&((r&((r&(!(F&T)))|F))|(T&(T&(!((b&F)|F))))))&(T|(!F)))|(b&T))|(b&b)).
+A: Let's think step-by-step.","First, simplify the constants, then move on to the variables:
+
+1. !(F&T) simplifies to T (because false and anything is always false, not false is true)
+2. !F simplifies to T (not false is true)
+3. b&F simplifies to F (anything and false is always false)
+4. F|F simplifies to F (false or false is always false)
+5. T&T simplifies to T (true and true is true)
+6. T|(!F) simplifies to T (true or anything is always true)
+
+Inserting these simplifications back into the original formula, we get:
+((((b&((r&(T))|F))|(T&T))&T)|b)|b
+
+This can be further simplified:
+
+1. r&T simplifies to r (anything and true is itself)
+2. T|F simplifies to T (true or anything is always true)
+3. b&((r|F)) simplifies to b&r
+4. (T&T) simplifies to T
+5. (T&b) simplifies to b
+6. (b|b) simplifies to b (anything or itself is always itself)
+
+Putting these back into the formula, we get:
+
+(b&r)|b|b
+
+This then simplifies to:
+
+b|(b&r)
+
+Since conjunction distributes over disjunction, the final, simplified logic formula is:
+
+b.",b.,b
+52,logic,self_consistency,(((q&q)|q)&(((x&((x|(((T&(T&T))&F)|((F&(F|T))|F)))|F))|(x&(x|((F&T)&T))))&F)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(((q&q)|q)&(((x&((x|(((T&(T&T))&F)|((F&(F|T))|F)))|F))|(x&(x|((F&T)&T))))&F)).
+A: Let's think step-by-step.","First let's simplify the T and F literals.
+
+(T&(T&T)) equals to T, because True AND True AND True always equals True.
+
+Now, (T&F) equals to F, because True AND False always equals False.
+
+Let's also simplify (F&(F|T)). (F|T) equals to T because False OR True equals True. So (F&T) is just False because False AND True equals False.
+
+Let's change the given formula with these facts.
+
+(((q&q)|q) & ((x&((x|F)|F)) | (x&(x|((F&T)&T)))) & F).
+
+This can be further simplified.
+
+Repeat the same simplification steps:
+
+(F&T) equals False, because False AND True equals False.
+
+x|F equals x, because any literal OR False keeps the value of the original literal
+
+Then the formula changes to 
+
+(((q&q)|q) & ((x&x) | (x&x)) & F)
+
+This simplifies to
+
+(q&q & (x&x) & F)
+
+Which further simplifies to 
+
+(q & x & F)
+
+Since anything AND False equals False, the final simplified logical formula is:
+
+F.",F.,F
+53,logic,self_consistency,((((l&(((w&((T&(T&F))|T))&w)|(!(F|(F&((T|F)|T))))))&l)&T)&(l|(F|(j&(v&F))))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((((l&(((w&((T&(T&F))|T))&w)|(!(F|(F&((T|F)|T))))))&l)&T)&(l|(F|(j&(v&F))))).
+A: Let's think step-by-step.","1. T&F is always F. So ((T&(T&F)) becomes (T&F) which is F again.
+
+2. (T|F) is always T. So (((T|F)|T)) becomes T.
+
+3. So, given F&((T|F)|T) becomes F&T which is F.
+
+4. !F is T.
+
+5. Therefore, the formula is simplified to (((l&(w&T)&w)&l)&T)&(l|(j&(v&F))).
+
+6. w&T which is equivalent to w, because any literal AND True is the literal itself.
+
+7. Therefore, the formula simplifies further to (((l&w)&l)&T)&(l|(j&(v&F))).
+
+8. v&F which is equivalent to F, because any literal AND False is False.
+
+9. Therefore, the formula simplifies further to (((l&w)&l)&T)&(l|(j&F)).
+
+10. j&F is equivalent to F, because any literal AND False is False.
+
+11. Therefore, the final simplified formula is ((l&w)&l).",((l&w)&l),l
+54,logic,self_consistency,((!((T&(T|((T|(F|((T&T)|T)))&(!(T|(!(F|T)))))))&(F&((!T)&T))))&(n|(!F))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((!((T&(T|((T|(F|((T&T)|T)))&(!(T|(!(F|T)))))))&(F&((!T)&T))))&(n|(!F))).
+A: Let's think step-by-step.","Step 1: we can firstly simplify the inner Boolean expressions:
+- (T | (F | ((T&T) | T))) simplifies to T (because anything ORed with T is T, any AND operation with T & T give us T and T ORed with F is still T)
+- (!(T | (!(F|T)))) simplifies to F (because (!T) is F and F | T gives us T, so NOT of T is False)
+- ((!T) & T) simplifies to F (since NOT T is F and F AND T is F)
+
+Step 2: plug those simplified expressions back in the formula:
+The formula then becomes: 
+(!((T&T)&F)&(F&F))&(n|!F)
+
+Step 3: further simplify:
+- (T & T & F) is F (since F AND any other expressions is F)
+- (F & F) is F 
+
+Now, the formula becomes:
+(!(F)&F)&(n|!F)
+Which simplifies to:
+(T&F)&(n|T)
+Simplify T & F to F and n | T to T, we get:
+F & T
+The result is F (since F AND any other expressions is F)",F,T
+55,logic,self_consistency,(!(((o&o)&F)|(w|((!F)|(((j&((j|F)|j))|F)|(!(v&(l&((a|F)&(F&T)))))))))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(!(((o&o)&F)|(w|((!F)|(((j&((j|F)|j))|F)|(!(v&(l&((a|F)&(F&T)))))))))).
+A: Let's think step-by-step.","1. First, (X & F) is always False, regardless of whether X is True or False. So, any part of the formula that contains ""something & F"" can be simplified to F. Thus, the formula inside the outermost brackets simplifies to (!(F | (w|((!F)|(((j&j)|F)|!(v&l&a)))))).
+   
+2. Similarly, (X | F) is always X, because or-ing with False doesn't change anything. So (a|F) can be simplified to a and (j|F) can be simplified to j. Now the formula simplifies to (!(F | (w|((!F)|(j|F)|!(v&l&a))))).
+
+3. Now we simplify (j&j) as j because and-ing something with itself doesn't change its value. We now simplify (w | (!F)) to (w | T), given that  (!F) equals T.
+
+4. Now, since (X | T) is always True, regardless of the value X, we thus simplify (w | T) to T. We are left with: !(F | T | j | (!u & l& a)).
+
+5. The logical OR operator with F and other elements can be eliminated because F or anything is just equal to that anything, which leads to: !(T | j | (!v & l & a)). 
+
+6. Also (X | T) is always True, the formula simplifies to !(T) i.e., just to F. 
+
+So, the given complex logical formula simplifies to just False (F).",F,F
+56,logic,self_consistency,((((h&(h|((T|F)&F)))|h)|(((h|((((T&(F|F))|(y|(s|T)))|(F|F))&F))&h)&T))&(h|h)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((((h&(h|((T|F)&F)))|h)|(((h|((((T&(F|F))|(y|(s|T)))|(F|F))&F))&h)&T))&(h|h)).
+A: Let's think step-by-step.","First, we know that T|F is T, T|anything is T, and F|anything is F. Same for &, T&anything is the 'anything' itself, F&anything is F. 
+
+Also, not(A or B) is not A and not B, which means A|B is A or B, so multiple or/and conditions present themselves as the one same condition.
+
+So we can simplify the given formula as follows.
+
+1. ((h&(h|(T&F)))|h)|(((h|(((T&(F|F))|(y|(s|T)))|(F|F))&F))&h)&T 
+
+2. = ((h&(h|F))|h)|(((h|(((F)|(y|T))|F)&F))&h)&T 
+
+3. = ((h&h)|h)|(((h|y)&F)&h)&T 
+
+4. = (h|h)|((F&h)&T)
+
+5. = h|F 
+
+6. = h.
+
+Thus, the simplified form of the given logical formula is ""h"".",h,h
+57,logic,self_consistency,(!((((h&(((h&h)|(((h&T)&(h&T))|(!T)))|F))|(h&(T&(!F))))&h)|(T|(T&T)))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(!((((h&(((h&h)|(((h&T)&(h&T))|(!T)))|F))|(h&(T&(!F))))&h)|(T|(T&T)))).
+A: Let's think step-by-step.","First of all, the expressions with T and F:
+
+a. ""h&T"" is equivalent to ""h"" (when T is true, the result of ""and"" operation is the value of h).
+b. ""T&(!F)"" is equivalent to ""T"" (when F is false, the negation of F is true; and anything ""and"" with true is the value of the other).
+c. ""h&(!F)"" is equivalent to ""h"" (when F is false, the negation of F is true; and anything ""and"" with true is the value of the other).
+d. ""h&h"" is equivalent to ""h"" (anything ""and"" with itself is itself).
+e. ""T|(T&T)"" is equivalent to ""T"" (anything ""or"" with true is true, regardless of the other value).
+f. ""(!T)"" is equivalent to ""F"" (negation of true is false).
+g. ""(h&h)|(((h&T)&(h&T))|(!T))"" is equivalent to ""h|((h&h)|F)"", which further simplifies to ""h|(h|F)"", which is ""h|F|F"", thus ""h"" (anything ""or"" with false is itself).
+h. ""h|F"" is equivalent to ""h"" (anything ""or"" with false is itself, so the F does not have any effect).
+
+So, your given logic formula:
+
+!((((h&(((h&h)|(((h&T)&(h&T))|(!T)))|F))|(h&(T&(!F))))&h)|(T|(T&T)))
+
+Simplifies to:
+
+!(((h&h|h)|(h&T))&h)|T
+which further simplifies into
+!(h|h)&T
+which is
+!h&T.",!h&T,F
+58,logic,self_consistency,(((((T&(!((T|(F&(!F)))|T)))|F)&F)&T)|(F&(!((!((T|((k|(T|T))|T))&F))|F)))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(((((T&(!((T|(F&(!F)))|T)))|F)&F)&T)|(F&(!((!((T|((k|(T|T))|T))&F))|F)))).
+A: Let's think step-by-step.","First, understand that:
+- Anything OR False (X|F) simplifies to X.
+- Anything AND True (X&T) simplifies to X.
+- Anything OR True (X|T) simplifies to True (T).
+- Anything AND False (X&F) simplifies to False (F).
+
+Second,note that NOT False (!F) simplifies to True (T), and NOT True (!T) simplifies to False (F).
+
+With this knowledge, let's simplify the formula:
+
+((((T&(!((T|(F&(!F)))|T)))|F)&F)&T)|(F&(!((!((T|((k|(T|T))|T))&F))|F)))
+
+= (((T&(!((T|((F&T)))|T)))|F)&F)&T)|(F&(!((!((T|((k|T)|T))&F))|F)))
+
+= (((T&(!((T|T)|T)))|F)&F)&T)|(F&(!((!((T|T)&F))|F)))
+
+= (((T&(!T))|F)&F)&T)|(F&(!((!F)|F)))
+
+= ((F|F)&F)&T)|(F&(!F))
+
+= F&T|F&F
+
+= F|F
+
+= F.",F,F
+59,logic,self_consistency,(!((F|((e|(e|F))|T))|((!((((((g|g)|g)&T)|F)&(F&(((s&F)&T)&T)))|F))&T))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(!((F|((e|(e|F))|T))|((!((((((g|g)|g)&T)|F)&(F&(((s&F)&T)&T)))|F))&T))).
+A: Let's think step-by-step.","1. F|T or anything|T will always be True(T) because the OR of something with True is always True.  
+So, (e|(e|F))|T will simplify to T.
+
+2. Multiple OR operators with the same operand will give the same operand, so ((g|g)|g) can be simplified to g. 
+
+3. (F&(((s&F)&T)&T))) will resolve to False (since AND of anything with False is False), so this simplifies to: F|(F&g&T)|F which again simplifies to F (since FALSE OR FALSE is FALSE).
+
+4. Negating False (!F) is True, so overall we will have : !(T|T) which equals to !T which equals False (F).
+
+So, the simplified formula is False (F).",F,F
+60,logic,self_consistency,(!((((((((t&(F|T))|(!(!F)))&t)&((t|F)&t))&(m|T))&T)&T)|(!((x&x)&F)))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(!((((((((t&(F|T))|(!(!F)))&t)&((t|F)&t))&(m|T))&T)&T)|(!((x&x)&F)))).
+A: Let's think step-by-step.","Firstly, we simplify the true and false values. 
+1. F|T equals T (False or true equals true)
+2. (!F) equals T (not False equals true)
+3. (T|F) equals T (True or false equals true)
+4. (m|T) equals T (Any variable or true equals true)
+5. ((x&x)&F) equals F (Any variable and false equals false)
+
+After the above simplifications, we can simplify the logic formula again in terms of the variables:
+(!(((((((t&T)|T)&t)&(T&t))&T)&T)&T)|(!F))
+ 
+1. t&T equals t (Any variable and true equals the variable itself)
+2. t&T equals t 
+3. t|T equals T (Any variable or true equals true)
+4. T&t equals t (True and any variable equals the variable itself)
+
+Now let's simplify more:
+((!(TTTTTt))|T) equals (F|T) equals T (False or true equals true).
+So, the simplified version of the given logic formula is T or true.",T,F
+61,logic,self_consistency,((g|g)|(((((b&((b|((q|F)&F))&b))|b)&T)|(T|((F|(!(T&(z|(T|T)))))&T)))|(T|F))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((g|g)|(((((b&((b|((q|F)&F))&b))|b)&T)|(T|((F|(!(T&(z|(T|T)))))&T)))|(T|F))).
+A: Let's think step-by-step.","First, we can simplify within parentheses, using the basic rules of Boolean algebra:
+
+1) A or A simplifies to A
+2) A and true simplifies to A
+3) A or false simplifies to A
+4) false and A simplifies to false
+5) not (A and B) is equivalent to (not A) or (not B)
+6) A or true simplifies to true
+7) A and false simplifies to false
+
+Applying these rules, 
+
+1) g | g simplifies to g
+2) q | F simplifies to q
+3) (q|F) & F simplifies to q & F, which simplifies to false
+4) b | (q|F) & F simplifies to b | false, which simplifies to b
+5) b & ((b | (q | F) & F) & b)) simplifies to b & (b & b), which simplifies to b
+6) !(T & (z | (T | T))) simplifies to !T | !(z | T), which simplifies to F | !z, and finally to true, because anything OR'd with false results in the same original value.
+7) b | b & T simplifies to b | b, which simplifies to b
+8) F | !(T & (z | T | T)) & T simplifies to F | true & T, which simplifies to T
+9) T | (F | !(T & z | T | T)) & T simplifies to T | T, which simplifies to true
+10) g | true simplifies to true.
+
+So, the whole logic formula significantly simplifies to just true.",T,T
+62,logic,self_consistency,((!((a|((a&(((a&(a|F))|F)|(((a&T)&a)&T)))&a))|T))&((!(!((T|(!F))|T)))|T)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((!((a|((a&(((a&(a|F))|F)|(((a&T)&a)&T)))&a))|T))&((!(!((T|(!F))|T)))|T)).
+A: Let's think step-by-step.","First, consider this part (((a&T)&a)&T), since a&T then a&True of course, this part will reduce to a.
+Then, consider this part (a&(a|F)), which is essentially a&True, which reduces to a.
+So, up to this point, the given expression simplifies to ((!((a|((a&a)&a))|T))&((!(!((T|((!F))|T)))|T))).
+
+Next, simplify (!F), which means NOT False, or True. So the expression reduces to 
+((!((a|a)|T))&((!(!(T|True|T)))|T)).
+From here, the expression simplifies to
+((!T)&(T|T))
+Since !T means NOT True, or False, the expression reduces to
+(F&T)
+
+Lastly F&T - when False and True - is always False. 
+
+So the final evaluated result of the whole expression is F or False.",F,F
+63,logic,self_consistency,((!F)|((o&T)|((((((!(F|(T&F)))&F)&((F|(F|(p|T)))|T))&(F|T))|(T|T))|(F|F)))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((!F)|((o&T)|((((((!(F|(T&F)))&F)&((F|(F|(p|T)))|T))&(F|T))|(T|T))|(F|F)))).
+A: Let's think step-by-step.","1. Simplify logical constants
+    * Not False (!F) = True
+    * False or True (F|T) and True or True (T|T) = True
+    * False and False (F&F) and False or False (F|F) = False
+
+The equation now becomes:
+((True)|((o&T)|((((((!False)))&False)&(True))&True))|False))
+
+2. Simplify inside brackets
+    * Not False (!False) = True
+    * True and False (True&False) = False
+
+The equation now becomes:
+((True)|((o&T)|((((True)&False)&True))|False))
+
+3. Resolve the remainder ands and ors
+    * True and False (True&False) = False
+
+Finally, it becomes:
+((True)|((o&T)|False|False))
+
+4. Simplify further
+True or anything = True (since logical or expects one true to return true)
+
+Hence the answer to the supplied logical formula is True.",True,T
+64,logic,self_consistency,(((T&(((x|((((x&T)|(x&x))&F)&(w&(x&F))))&(x&(x&x)))&F))&F)&((T|(F&(g|T)))&F)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(((T&(((x|((((x&T)|(x&x))&F)&(w&(x&F))))&(x&(x&x)))&F))&F)&((T|(F&(g|T)))&F)).
+A: Let's think step-by-step.","In the Boolean algebra, we have a few laws like:
+1. a & T = a
+2. a | F = a 
+3. a & F = F
+4. a | T = T
+5. a & a = a 
+6. a | a = a 
+
+Let's use these laws and start from innermost brackets:
+
+- (x&T) = x & T = x according to law #1
+- On the other hand, (x&x) = x & x = x, using law #5 
+- (x|X) = x , using law #6 
+
+So, (((x&T)|(x&x))&F) will simplify to (x|x)&F = x&F = F, since x|F = x and x&F = F. 
+
+On the other hand ((x|((((x&T)|(x&x))&F)&(w&(x&F)))) just equals to (x|(w&F)) = x|F = x, because anything combined with false using logical and will result in false and anything combined with false using logical or will result in itself.
+
+Now let’s simplify (x&(x&x)) into x&(x&x) = x&x =x, using laws #5 
+
+Now let's go bigger and focus on, (T&(((x|((((x&T)|(x&x))&F)&(w&(x&F))))&(x&(x&x)))&F)) = T&(x&F) = T&F = F. Since anything combined with false using logical and (&) is false.
+
+So, ((T&(x&F))&((T|(F&(g|T)))&F)) = F&((T|(F&T))&F) = F&(T&F) = F&F = F.
+
+So, the entire original formula simplifies to F.",F,F
+65,logic,self_consistency,((T&(T|(((((((!F)&T)|(F&(T|T)))&T)|F)&T)|(T&(w|((!F)|T))))))|(F|(w&(!T)))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((T&(T|(((((((!F)&T)|(F&(T|T)))&T)|F)&T)|(T&(w|((!F)|T))))))|(F|(w&(!T)))).
+A: Let's think step-by-step.","Starting from the innermost expressions:
+(!F) is the logical not of False which is True
+(T|T) is the logical or of True or True which is True
+(F&(T|T)) is the logical and of False and True which is False
+((!F)&T) is the logical and of True and True which is True
+((((((!F)&T) | (F&(T|T)))&T) | F) resolves to (True | False) which is True 
+(T&(w|((!F)|T))) resolves to True & (w|True) = True
+
+Therefore the entire expression simplifies to:
+(T & (T | True) | (F | w & False)) 
+
+F | w & False resolves to False because F | False = False and (w & False) is also False. 
+
+Therefore, the final simplified form of the expression is:
+T & (T | True) | False = T & True = True.",True,T
+66,logic,self_consistency,((j|(!T))|(j|((((((j|((f&T)&(!T)))|((F|F)&T))|(j|j))|(F&F))|j)|((j&j)|F)))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((j|(!T))|(j|((((((j|((f&T)&(!T)))|((F|F)&T))|(j|j))|(F&F))|j)|((j&j)|F)))).
+A: Let's think step-by-step.","1. !T is always F (logical not of True is False)
+2. (F&F) is always F (False and False is always False)
+3. (f&T) is equivalent to f only since if T is True it doesn't affect the result and if not, the 'and' operation would always be False but given that T is always True then we can assume it's always f.
+4. (j|j) and (j&j) are both equivalent to j only (it's a property of logical operations that a value or/and itself is itself).
+5. For a variable j, (j|!j) is always True.
+6. If you see |F or &T, it's not affecting values.
+
+With these simplifications, we can get - the entire expression would result in (j|F), which is the equal to j. The answer should be j.",j,j
+67,logic,self_consistency,(!(((x|((((k|(F&(!T)))|F)|k)|(!(n&(p&(!(F|T)))))))&T)|((F&(m&F))|T))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(!(((x|((((k|(F&(!T)))|F)|k)|(!(n&(p&(!(F|T)))))))&T)|((F&(m&F))|T))).
+A: Let's think step-by-step.","First, let's simplify the constants in the expression:
+
+- !T is equal to F.
+- F&T is equal to F.
+- F|T is equal to T.
+- !T or !F is equal to F or T, respectively.
+- F&F is equal to F.
+- F&M is equal to F.
+- F|T is equal to T.
+
+Substituting these into the expression, we get:
+
+!(((x|((((k|(F&F))|F)|k)|(!(n&(p&(!T))))))&T)|((F&(m&F))|T)) 
+= !(((x|((((k|F)|F)|k)|(!(n&(p&F))))&T)|T)) 
+
+As seen in any value 'OR' with 'False' retains the original value while 'AND' with 'True' retains the original value and 'OR' with 'True' is always 'True'. Let's simplify it further:
+
+!(((x|((k|F)|k)|(!n))&T)|T)) 
+= !(((x|(k|k)|(!n))&T)|T)) 
+= !(((x|k|(!n))&T)|T)).
+
+Simplifying further with same rules, we get:
+
+= !(((x|k|(!n))|T)) 
+= !(T) = F",F,F
+68,logic,self_consistency,((!T)&((!(!(v|T)))&((((((w&((w|w)&T))&T)|((T&(F&(r|T)))|F))|(F&F))&F)&F))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((!T)&((!(!(v|T)))&((((((w&((w|w)&T))&T)|((T&(F&(r|T)))|F))|(F&F))&F)&F))).
+A: Let's think step-by-step.","1. We start by negating T. !T = F.
+2. (!(!(v|T))) = T. Since v OR T = T and the double negation gives us T.
+3. (w&(w&w)&T)&T simplifies to w because T = w&w&T = w.
+4. (T&(F&(r|T))) = T&F because r|T = T. However, T&F = F.
+5. (F&F) = F.
+6. With the above simplifications, we are left with (((F&((F)&(((w|F)|F)&F))))), which simplifies further to F. Any statement AND'ed with False is False. Hence, the entire logic formula simplifies to False.",F,F
+69,logic,self_consistency,((T|F)|((((p&((j&(T|(f&(!T))))|(T|(!(!(F&T))))))&F)|T)|(!(((F&T)&T)&T)))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((T|F)|((((p&((j&(T|(f&(!T))))|(T|(!(!(F&T))))))&F)|T)|(!(((F&T)&T)&T)))).
+A: Let's think step-by-step.","1. F&T always equals F because False and any statement is False. So, change all occurrences of (F&T) to F.
+   You have: ((T|F)|((((p&((j&(T|(f&F))))|(T|(F))))&F)|T)|(F)).
+
+2. !F is always T because not False is True. Change !(F) to T.
+   You have: ((T|F)|((((p&((j&(T|(f&F))))|(T|T)))&F)|T)|T).
+
+3. (f&F) is always F because False and any statement is False. Change any occurrences of (f&F) to F.
+   You have: ((T|F)|((((p&((j&(T|F))))|(T|T)))&F)|T)|T).
+
+4. (T|F) and (T|T) are both TRUE because True or any statement is True. Change (T|F) and (T|T) to T.
+   You have: (T|(((p&((j&T)|T))&F)|T)|T).
+   
+5. (j&T) is always j because True and any statement is the statement itself. Replace (j&T) with j.
+   You have: (T|(((p&(j|T))&F)|T)|T).
+
+6. Again, (j|T) and (p|T) are both T because True or any statement is True. Change both the (j|T) and (p|T) to T.
+   You have: (T|((T&F)|T)|T).
+
+7. (T&F) is always F because False and any statement is False. Change (T&F) to F.
+   You have: (T|F|T|T).
+
+8. Again, (T|F) and (T|T) are both TRUE because True or any statement is True. All parts of the formula becomes T.
+   You have: T.
+
+So, the simplified logic formula is T.",T,T
+70,logic,self_consistency,(!(((!(!(F|((T|(!(h|T)))|(((q&T)&T)|T)))))&F)&((!(T&((u|T)|T)))&F))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(!(((!(!(F|((T|(!(h|T)))|(((q&T)&T)|T)))))&F)&((!(T&((u|T)|T)))&F))).
+A: Let's think step-by-step.","1. h|T implies T, because ""h or True"" always simplifies to True, regardless of the value of h.
+
+2. (!T) results in False, because negation of True is False.
+
+3. (u|T) implies T, because ""u or True"" always simplifies to True, regardless of the value of u.
+
+4. (T|T) results in T, because True or True is always True.
+
+5. Similarly, ((q&T)&T) implies (q&T), because ""q and True"" is equivalent to ""q"".
+
+6. So the overall expression becomes : 
+
+   !((!(F|T|T|T))&F)&(!((T&T)&F)).
+
+7. Define: F|T|T|T as T and, T&T as T. So, !(T)&F and T&F which is simply False. The expression becomes:
+
+   !(False) & !(False), which is simply True & True = True.
+
+So the simplified form for the provided expression is T or True.",T,T
+71,logic,self_consistency,((((T|((k&(F|((!(F|F))|F)))&F))|(!(w|(!((!((s&s)|T))|F)))))&T)&(F|(u&F))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((((T|((k&(F|((!(F|F))|F)))&F))|(!(w|(!((!((s&s)|T))|F)))))&T)&(F|(u&F))).
+A: Let's think step-by-step.","First, let's simplify the expression from inside out. Here are a few basic logical laws that will be used in the simplification:
+
+1. F or X = X : Whenever False or anything is resulting in the thing itself.
+2. T or X = T : Whenever True or anything is resulting in True.
+3. F and X = F : Whenever False and anything is resulting in False.
+4. T and X = X : Whenever True and anything is resulting in the thing itself.
+5. !F = T : Not False equals to True.
+6. F & X = F : False and anything is False.
+7. F | X = X : False or anything equals to the thing itself.
+
+Now, let's apply these laws to your expression:
+
+= (((T|((k&(F|((!(F|F))|F)))&F))|(!(w|(!((!((s&s)|T))|F)))))&T)&(F|(u&F)))
+
+= (((T|((k&(F|(T|F)))&F))|(!(w|(!((!(T))|F)))))&T)&(F|F)
+
+= (((T|((k&(F|T))&F))|(!(w|(!(T)))))&T)
+
+= (((T|(k&F))|(!w))&T)
+
+= ((T|F)|(!w))&T)
+
+= T & T
+
+= T 
+
+Hence the simplified form of the expression is T (True).",T,F
+72,logic,self_consistency,((T|((((((s&s)&s)&s)|(w&(!((T|(T&F))&(T|(l|T))))))&(s&s))&(F&F)))&(T|(l&F))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((T|((((((s&s)&s)&s)|(w&(!((T|(T&F))&(T|(l|T))))))&(s&s))&(F&F)))&(T|(l&F))).
+A: Let's think step-by-step.","First, consider the part of the expression ""(T| (T&F))"". No matter the value of the other operand, or will always be true if at least one of its operands is true. Thus, (T|(T&F)) just simplifies to T. 
+
+Now, consider the part of the expression ""(T|(l|T))"". As discussed before, or will always be true if at least one of its operands is true. Thus, (T|(l|T)) also simplifies to T. 
+
+By substituting the above results back into the formula, we can simplify ""w&(!((T|(T&F))&(T|(l|T))))"" to ""w&(!(T&T))"", which simplifies to ""w&F"" since not T equals to F. This further simplifies to F because and is false if either of its operands is false. 
+
+Now, look at ""(F&F)"", since and is false if at least one of its operands is false and both the operands are false, it simplifies to F.
+
+Substituting all the above results into the formula, we simplify the whole formula to ""((T|((s&s)&s)&F)&(T|(l&F)))"", which simplifies to ""(T&F)"" since or is false if both of its operands are false. ""T&F"" further simplifies to F because and is false if either of its operands is false. 
+
+Thus, the simplified formula is F.",F,T
+73,logic,self_consistency,((s|F)&((((!(F&(!(((T|F)&T)&F))))|T)|(((((((F&F)|T)&T)&T)&T)&F)&F))|(T|F))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((s|F)&((((!(F&(!(((T|F)&T)&F))))|T)|(((((((F&F)|T)&T)&T)&T)&F)&F))|(T|F))).
+A: Let's think step-by-step.","Firstly, let's deal with the simpler operations:
+(T|F)&T = T & T = T,
+(F&F)|T = F|T = T,
+any operation with logical or(T) = T,
+any operation with logical and(F) = F.
+
+Hence:
+F&(!((T&F))) = F&(!F) = F&T = F.
+
+((((((F&T)&T)&T)&T)&F)&F) = F&F = F.
+
+((s|F)&((!(F))|T)|(T|F)) = (s&T|T) = T, because anything OR with true is true.
+
+Hence the final result is True.",T,s
+74,logic,self_consistency,(((d&(d&T))&(T&((F&(T|(!(((T&T)&F)|(!(T&T))))))|((w&(T|(!F)))|T))))|(!F)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(((d&(d&T))&(T&((F&(T|(!(((T&T)&F)|(!(T&T))))))|((w&(T|(!F)))|T))))|(!F)).
+A: Let's think step-by-step.","Firstly note that (l&T)=l, for any literal l (since anything AND True is just that thing). Similarly, any literal l OR True is simply True (since the result will always True regardless of l).
+
+1. (((d&(d&T))=&((T&((F&(T|(!(((T&T)&F)|(!(T&T))))))|((w&(T|(!F)))|T))))|(!F)).
+
+2. Using (l&T)=l, we can simplify (d&(d&T)) and (w&(T|(!F))) (also !F is T) to:
+   ((d&d)&(T&((F&(T|(!(((T&T)&F)|(!T&T))))|(w|T))))|T).
+
+3. Now we can simplify (T|(!(((T&T)&F)|(!T&T)))). Since (T&T)=T, we get (T|(!((T&F)|(!T)))). 
+   The expression term (T&F) results in F and (!T) results in F. So it then simplifies to: 
+   (T|(!(F|F))) which then simplifies further to (T|T) = T.
+   So ((d&d)&(T&((F&T)|(w|T))))|T will be ((d&d)&(T&F|w|T))|T.    
+   
+4. Rewriting ((d&d)&(T&F|w|T))|T, we have (d&T&F|w&T|T)|T . 
+   For AND operator, (l&F) = F, hence the d&T&F = F.
+
+5. So, we are left with (F|w&T|T)|T which simplifies to F|T|T = T. Hence, the final simplified formula is T.",T,T
+75,logic,self_consistency,((p|(((F|T)|F)|T))&(T|((T|((T&(F|(z|(!(T&F)))))&((!(F&(T|(T&F))))&T)))|T))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((p|(((F|T)|F)|T))&(T|((T|((T&(F|(z|(!(T&F)))))&((!(F&(T|(T&F))))&T)))|T))).
+A: Let's think step-by-step.","First of all, we have expressions of the form `X|T` or `T|X` or `F|X` or `X|F`. In all these cases, regardless of X, if X is associated with T via OR operation, it always results in T. Similarly, if X is associated with F via OR operation, it becomes the value of X itself.
+
+Let's apply this rule to the expression:
+
+`(p|(((F|T)|F)|T))` becomes `(p|T)`, which is `T` because anything OR T is T.
+
+`(T|((T|((T&(F|(z|(!(T&F))))))&((!(F&(T|(T&F))))&T)))|T)` becomes `(T|T)`, which is `T` again because anything OR T is T.
+
+Now we have the entire expression as `T&T` which is `T` because anything AND T remains the same. So, the simplified logic is `T`.",T,T
+76,logic,self_consistency,((((h&h)&T)|(((((h|(F&((p|T)&F)))|(F&((F&(F|F))&T)))&(h&h))|(F&F))&T))|(h&h)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((((h&h)&T)|(((((h|(F&((p|T)&F)))|(F&((F&(F|F))&T)))&(h&h))|(F&F))&T))|(h&h)).
+A: Let's think step-by-step.","First, the inner operations can be simplified:
+(F & (p|T) & F) = F (because False and anything is False)
+Similarly, (F & (F|F) & T) = F
+(F & F) = F
+
+Now, the formula will be simplified as:
+((((h & h) & T) | (( h | F | F ) & (h & h) & T)) | (h & h))
+
+Simplifying further:
+(h & h) & T = h (because h & h = h and h & T = h)
+Similarly, (h | F | F) = h
+
+Then, the formula will be simplified as:
+(h | h & h | h) = h (because h & h = h and h | h = h)
+
+So the final simplified form is h.",h,h
+77,logic,self_consistency,((h|((F&T)&F))&((h|(((((((h&T)&h)|h)|(h|(!(T|F))))&h)&(z|(h|T)))&(m|T)))&T)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((h|((F&T)&F))&((h|(((((((h&T)&h)|h)|(h|(!(T|F))))&h)&(z|(h|T)))&(m|T)))&T)).
+A: Let's think step-by-step.","1. Any value AND False (F) is always False (F). Hence the part ((F&T)&F) simplifies to F.
+2. Therefore, (h|((F&T)&F)) results to h. So the formula can be rewritten as:
+((h)&(((h|(((((((h&T)&h)|h)|(h|(!(T|F))))&h)&(z|(h|T)))&(m|T)))&T)).
+
+3. The expression (T|F) is True (T), because F|T is True and T|F is True and hence, the negation of T i.e, !(T) is F. Now the formula is:
+((h)&((h|(((((((h&T)&h)|h)|(h&F))&h)&(z|(h|T)))&(m|T)))&T)).
+
+4. h&F is F and h or F is h. Hence the formula now becomes:
+((h)&((h|((((((h&T)&h)|h)&h)&(z|(h|T)))&(m|T)))&T)).
+
+5. Now it can be observed that the entire expression is ANDed with T at the end, so we can remove it to simplify the formula. Hence the formula becomes:
+(h&((h|((((h&T)&h)|h)&h)&(z|(h|T)))&(m|T))).
+
+6. h or h is h. Hence, this simplifies to:
+(h&((h&h)&(z|(h|T)))&(m|T)).
+
+7. h and h is h. The formula now simplifies to: 
+(h&h&(z|(h|T))&(m|T)).
+
+8. Any value OR with True is always True. So (z|(h|T)) is True, and (m|T) is also True. Hence the formula simplifies to: 
+(h&h&T&T).
+
+9. Finally, h and True is h. This simplifies the formula to: 
+(h&h).
+
+10. Finally, h and h is h. Hence the simplified formula is h.",h,h
+78,logic,self_consistency,(((k|(((w|w)&(((T&((c&T)|T))|F)&(T|(F|(F|(F|F))))))&F))&k)|((F|(F&(F&T)))|F)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(((k|(((w|w)&(((T&((c&T)|T))|F)&(T|(F|(F|(F|F))))))&F))&k)|((F|(F&(F&T)))|F)).
+A: Let's think step-by-step.","1. Firstly, look at the inner brackets that contain T (true) and F (false) values. ""T&F"" always results in F. And F&any boolean = F too. And yes, T|any boolean = T. Applying this logic, the formula simplifies to: 
+
+(((k|(((w|w)&(T))&F))&k)|F)
+ 
+Simplify it further as w|w = w and (T)&(F) = F and (k&F) = F. So, it will result in:
+
+(F&k)|F => F|F = F
+
+The final simplified logic formula is just F or False.",F,k
+79,logic,self_consistency,(((l&((l&(F|(!(F|F))))&T))|l)&(l|((l&((T|(T&(((z&F)|(b&F))|(b&F))))&T))|F))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(((l&((l&(F|(!(F|F))))&T))|l)&(l|((l&((T|(T&(((z&F)|(b&F))|(b&F))))&T))|F))).
+A: Let's think step-by-step.","First, we will simplify each operation one by one.
+
+1. (F | !(F | F)):
+The operation inside the bracket (F | F) will be False, because False OR False is False. Then the NOT operation will occur, NOT False is True. So, (F | !(F | F)) is True.
+
+2. (T | (T & ((z & F) | (b & F) | (b & F)) & T)): 
+Again, there are three operations inside the bracket this time, (z & F), (b & F) and (b & F). The end with False (z & F, b & F, and b & F) will always be False. So, the entire operation (T | (T & False & T)) will always be True, because True OR anything is always True.
+
+Consider the entire operation now.
+
+(((l & ((l & True) & T)) | l) & (l | True)).
+
+Again, anything AND True remains unchanged. So it simplifies to 
+
+((l & l & T) | l) & (l | T)).
+
+Again using the same rule, the formula becomes:
+
+((l & l) | l) & (l | T)
+
+Since, l AND l = l, we have,
+
+(l | l) & (l | T)
+
+It simplifies to l & (l  | T).
+
+Since, anything OR True is True, we have,
+
+l & T.
+
+Hence, the simplified formula is:
+
+l & T or simply 'l'.
+
+This is because anything AND True will result in the unchanged value of that anything, in this case 'l'.",l,l
+80,logic,self_consistency,(((c|((((c|(!T))|(((c|(c|c))|((F&T)|F))|c))|(F&F))&T))&T)&((c|(F&(j|T)))|c)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(((c|((((c|(!T))|(((c|(c|c))|((F&T)|F))|c))|(F&F))&T))&T)&((c|(F&(j|T)))|c)).
+A: Let's think step-by-step.","First, we simplify operations involving constants:
+(!T) is F, i.e., the negation of True is False.
+((F&T) is F, i.e., False and any value is always False.
+(F&F) is also F.
+
+So, the expression becomes:
+(((c|((((c|F))|(((c|(c|c))|F)|c))|F))&T))&T)&((c|(F&(j|T)))|c).
+
+Next, is to simplify the operations around variable 'c':
+(c|(c|c)) can be simplified to c, i.e., c or c is still c.
+
+This makes our expression:
+(((c|((c|F)|((c|F)|c)))|F)&T)&T)&((c|(F&(j|T)))|c).
+
+Simplifying further:
+(c|F) is just c, because c or False is just c which results to:
+((((c|c)|c)||F)&T)&T)&((c|(F&(j|T)))|c).
+
+which simplifies to:
+((c|F)&T)&((c|(F&(j|T)))|c).
+In other words, ((c)&T)&((c|(F&(j|T)))|c).
+
+Then, we simplify (F&(j|T)):
+(F&(j|T)) is F, because False and any value is always False, which yields:
+((c)&T)&((c|F)|c).
+Simplifying gives us:
+((c)&T)&(c|c).
+
+One last simplification:
+(c|c) simplifies to c. Our expression is now
+((c)&T)&c.
+
+Again, (c&T) simplifies to c, since any value and True is just the value itself.
+So, our final simplified expression is c&c, and if we simplify this fully, we just get c.",c,c
+81,logic,self_consistency,((f|F)&((j|(T|((T|T)|F)))|(F|(i&(T&((((!F)&((F&F)|(T|T)))|T)&((z&z)&F))))))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((f|F)&((j|(T|((T|T)|F)))|(F|(i&(T&((((!F)&((F&F)|(T|T)))|T)&((z&z)&F))))))).
+A: Let's think step-by-step.","Firstly, T|T = T and F|F = F, also any value OR True (T or F|T) gives us True, so those parts can be simplified, so we have:
+((f|F)&((j|T)|(F|(i&(T&((!F)&T)&((z&z)&F)))))).
+
+Notice that T&((!F)&T)&((z&z)&F) simplifies to T& True & F, which equals to F. F&i = F and F OR F = F. So, |F can be eliminated in the outside expression, which gives:
+((f|F)&(j|T)) 
+
+Simplify this further, taking into account that T or anything = T and anything with F = itself, we have:
+(f&T) 
+
+And T&f is simply f. 
+
+So the simplified logic formula is: f.",f,f
+82,logic,self_consistency,((!((!T)&((!(m&((F&((h&h)&F))&T)))|(T|(F&(T&((T&(F&T))|T)))))))|(F|(y&F))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((!((!T)&((!(m&((F&((h&h)&F))&T)))|(T|(F&(T&((T&(F&T))|T)))))))|(F|(y&F))).
+A: Let's think step-by-step.","1. Firstly, simplify the constants. Knowing the properties of AND (F & T = F, T & T = T, T & F = F, F & F = F) and OR (T | F = T, T | T = T, F | T = T, F | F = F), we can reduce the complexity of the expression:
+
+For AND: 
+    (h & h) = h
+    Anything AND False will be False, so F & h = F.
+    Anything AND True will remain itself, so T & F = F.
+    So, (F & T) equals to F.
+
+For OR:
+    Anything OR True will be True, so T | F = T.
+    Anything OR False will remain itself, so (F | T) equals to T.
+    So, T | T = T.
+
+The simplified expression now looks like this: ((!((!T)&((!(m&F))|(T))))|(F|(y&F)))
+
+2. The NOT operator changes True to False and vice versa. So, applying the NOT operator to T will result in F.
+
+The simplified expression now looks like this: (!((F)&((!(m&F))|(T)))|(F|(y&F)))
+
+3. In the left part of the formula, a couple more simplifications can be done.
+
+( m & F ) = F 
+
+The simplified expression now looks like this: (!((F)&(!F | T)))||(F|(y&F))
+
+4. Applying AND:
+( F & !F ) = F, 
+( F & T ) = F
+
+5. Applying OR, resulting in: (!F | F) = T
+
+So the final simplified result is: T.",T,T
+83,logic,self_consistency,(((((n&n)|T)|((((((v&(T|F))&F)|(T|((n|T)|F)))&T)&((T&T)&F))|F))&T)|(!(!F))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(((((n&n)|T)|((((((v&(T|F))&F)|(T|((n|T)|F)))&T)&((T&T)&F))|F))&T)|(!(!F))).
+A: Let's think step-by-step.","1. T | F = T because an OR operation with at least one True value is always True.
+2. T & T = T because an AND operation with all True values is True.
+3. !F = T because NOT operation negates the initial value, so NOT False results in True.
+4. T | F = T, as discussed previously, OR operation with at least one True is always True.
+5. Any operations with False using AND operator gives False. Therefore, (v & (T | F)) & F = F.
+6. F | T = T, because anything OR True is always True.
+7. n | T = T, since ANYTHING OR True is always True.
+8. (T & T) & F = F, as the result with False using AND operator always gives False.
+9. ((T & T) & F) | F = F, because all elements were False.
+10. Anything AND True still remains the same. Therefore, whole expression becomes T | T = T. 
+
+So, ((((n&n)|T)|((((((v&(T|F))&F)|(T|((n|T)|F)))&T)&((T&T)&F))|F))&T)|(!(!F))) is T.",T,T
+84,logic,self_consistency,((F|T)|(((x&((T|(F&(F&T)))|T))|(((x&((((v&T)|T)|(!(T|F)))|T))&T)&x))&(F&F))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((F|T)|(((x&((T|(F&(F&T)))|T))|(((x&((((v&T)|T)|(!(T|F)))|T))&T)&x))&(F&F))).
+A: Let's think step-by-step.","1. (F|T): This will be True (T), because 'or' operation will be True if any one of the operands is True.
+2. ((F&(F&T)): This will be False (F), because 'and' operation will be False if any one of the operands is False.
+3. (T|(F)): This will be True (T), as 'or' operation will be True if any one of the operands is True.
+4. (((v&T)|T): This will be True (T), because v&T could be either True or False, but 'or' operation with True gives True.
+5. (!(T|F)): This will be False (F), as not operation on True gives False.
+6. (F&F): This will be False (F), as 'and' operation will be False if any one of the operands is False.
+
+Now insert these results back into the expression:
+
+(T|(((x&((T|F)|T))|(((x&(((T)|T)|F)|T))&T)&x))&(F))
+
+This simplifies to:
+
+(T|(((x&(T|T))|((x&(T|F)&T)&x))&F))
+
+Which becomes:
+
+(T|(((x&T)|((x&T)&x)&F))
+
+Which simplifies even further to:
+
+(T|((x|((x&x)&F))
+
+Now, (x&x) will always be x, and any value x AND False is always False, so the above expression simplifies to:
+
+(T|((x|F))
+
+Which simplifies to T|True, which is True.
+
+Thus, the simplified logic formula is True (T).",T,T
+85,logic,self_consistency,(!(!((((((l|((F&F)&T))|T)&T)&(!((F|(!(!F)))&T)))&T)&(s|(F|T))))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(!(!((((((l|((F&F)&T))|T)&T)&(!((F|(!(!F)))&T)))&T)&(s|(F|T))))).
+A: Let's think step-by-step.","1. (F&F) --> F, (F|T) --> T, so we simplify to (!(!((l|F|T)&T&!(F&T)&T))&(s|T)).
+2. (F&T) --> F , so now we have (!(!((l|F|T)&T&!F&T))&(s|T)).
+3. Next inside the first negation (!) are OR (|) operations, F|T is T and l|F is l, so we have (!(!(l&T&!F&T))&(s|T)).
+4. In the first part now we have !(!l&T&T), which is just !l. On the second part F|T is T, an OR operation with T will always be T, so second part with s is just T. Therefore it simplifies to (!l&T).
+5. The final output after simplification: T.",T,T
+86,logic,self_consistency,((((((s&((s|(s&T))|(s&((s|s)|(F|F)))))|s)&s)|(T&(F&(T&(g|T)))))|(s|s))|(F|T)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((((((s&((s|(s&T))|(s&((s|s)|(F|F)))))|s)&s)|(T&(F&(T&(g|T)))))|(s|s))|(F|T)).
+A: Let's think step-by-step.","1. ((((((s&((s|(s&T))|(s&((s|s)|(F|F)))))|s)&s)|(T&(F&(T&(g|T)))))|(s|s))|(F|T))
+2. ((((((s&(s|(s&T)))|s)&s)|(T&(F&(T&(g|T)))))|(s|s))|(F|T)) // simplify (s|s) and (F|F) to s and F
+3. (((((s&(s|T))|s)&s)|(T&(F&(T&(g|T)))))|s)|(F|T) // simplify (s|(s&T)), since no matter which value s has, the whole statement will be true if either s or T is true
+4. ((((s|s)&s)|(T&(F&(T&(g|T)))))|s)|(F|T) // simplify (s&(s|T)) to s
+5. (((s&s)|(T&(F&(T&(g|T)))))|s)|(F|T) // simplify (s|s) to s
+6. ((s|(T&(F&(T&(g|T)))))|s)|(F|T) // simplify s&s to s
+7. (s|(T&(F&(T&(g|T))))|s)|(F|T) // simplify ((s|(T&(F&(T&(g|T)))))|s) to (s|(T&(F&(T&(g|T))))
+8. s|(T&(F&(T&(g|T))))|(F|T) // simplify (s|(T&(F&(T&(g|T))))|s) to s|(T&(F&(T&(g|T))))
+9. s|(T&F&g)|T // simplify (T&(F&(T&(g|T)))) to F, because T&F equals F
+10. s|F|T // simplify (T&F&g) to F because T&F is always F
+11. T // simplify F|((s|T)&(s|T)) to T, because anything or'd with T equals T
+
+Therefore, the simplified form of the given logic formula is T.",T,T
+87,logic,self_consistency,(((p|F)|p)&(((p|p)|((p&(T|T))&(T&(((F&(!(F|F)))|T)|((!(f|(m|T)))&T)))))|F)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(((p|F)|p)&(((p|p)|((p&(T|T))&(T&(((F&(!(F|F)))|T)|((!(f|(m|T)))&T)))))|F)).
+A: Let's think step-by-step.","1. Any value 'OR' with 'False' remains the same value. Therefore, (p|F) simplifies to p. 
+2. Any value 'OR' with itself remains the same value. Therefore, (p|p) simplifies to p.
+3. 'True OR True' is always True, so (T|T) simplifies to T.
+4. Any value 'AND' with 'True' remains the same value. Therefore, (p&T) simplifies to p
+5. The expression inside the parenthesis, (! f | (m | T)) can be simplified. Any value 'OR' with 'True' is always True. Therefore, (m | T) simplifies to T and (! f | T) simplifies to T.
+6. Once again, any value 'AND' with 'True', remains the same value. Therefore, the expression (! f | (m | T)) & T simplifies further to T.
+7. 'False AND Any value' will always be False. Therefore, (F&(! F)) simplifies to F. 
+8. Now that (F&(! F)) simplifies to F, the expression ((F&(!(F|F)))|T) simplifies to (F | T), which simplifies futher to T.
+8a. Also, another expression in the formula simplifies as follows: ((!(f|(m|T)))&T) simplifies to T&T, which is simply T.
+9. Now, let's replace all these simplified expressions in the original formula:
+((p|F)|p)&((p|p)|((p&(T|T))&(T&(((F&(!(F|F)))|T)|((!(f|(m|T)))&T)))))|F) simplifies to 
+p & (p | (p & T & T & T)) | F, which simplifies further to p. 
+
+So, the simplified logic formula is: p.",p,p
+88,logic,self_consistency,((y|y)&((y&y)|((l|F)&((((b&(((b|b)|F)&b))|((h|((T|F)&T))|F))|F)&(F&(t&F)))))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((y|y)&((y&y)|((l|F)&((((b&(((b|b)|F)&b))|((h|((T|F)&T))|F))|F)&(F&(t&F)))))).
+A: Let's think step-by-step.","1. OR operation on two identical terms, i.e., (y|y), is equivalent to the term itself, i.e., y.
+
+2. AND operation on two identical terms, i.e., (y&y), is equivalent to the term itself, i.e., y.
+
+3. Logical OR with false (l|F) is equivalent to the term l. So, (l|F) simplifies to l.
+
+4. Logical OR with true (T|F), is always true (T). Applying AND operation with T ((T|F)&T) keeps the T.
+
+5. However, this result is then logically OR'd with h ((h|((T|F)&T))), which simplifies to h.
+
+6. Logical AND with false (F&(t&F)) is always false (F).
+
+7. Logical OR with false (b|F) is equivalent to the term b. So, (b|b)|F simplifies to b and then (((b|b)|F)&b) simplifies to b itself.
+
+8. Logical OR with false (((b&b)|((h|T)|F))|F)&F is equivalent to the complex expression itself, so it simplifies to (b&(((b|b)|F)&b))|h|F.
+
+9. Because AND operation is distributive over OR operation, this simplifies to b&b or b&h |F|F|F, because F | F simplifies to F.
+
+10. OR operation on a term with itself, is equivalent to the term itself, so (b&b) or b&h simplifies to b or h.
+
+11. Therefore, the entire statement simplifies to ((y&y) | l & (b|h)).
+
+So, ((y|y)&((y&y)|((l|F)&((((b&(((b|b)|F)&b))|((h|((T|F)&T))|F))|F)&(F&(t&F))))) simplifies to ((y&y) | l & (b|h)).",(y | l & (b|h)),y
+89,logic,self_consistency,(!((v&v)|((((T|F)|((!((a|(a&a))&F))|(p|((x&(F|F))|T))))|F)|((d|F)|T)))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(!((v&v)|((((T|F)|((!((a|(a&a))&F))|(p|((x&(F|F))|T))))|F)|((d|F)|T)))).
+A: Let's think step-by-step.","1. Since T|F = True and F|F = False, the expression simplifies to 
+
+!((v&v)|((((T|((!((a|(a&a))&F))|(p|((x&False)|T))))|F)|((d|F)|T))))
+
+2. An and operation with False gives False and an or operation with True gives True. So, the expression simplifies to 
+
+!((v&v)|((T|(p|T))|T))
+
+3. T|T = True  and doing an or operation with True results in True. Hence, the expression simplifies to 
+
+!((v&v)|True)
+
+4. Doing an or operation with True gives True. Hence, the expression simplifies to 
+
+!(True)
+
+5. A not operation reverses the logical value. Hence, the expression finally simplifies to 
+
+False",False,F
+90,logic,self_consistency,(((o|(o|((F&((((F|F)|F)&(F|(T&F)))|(w&F)))|F)))|(((((f&T)&f)|T)|T)&F))&(!T)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(((o|(o|((F&((((F|F)|F)&(F|(T&F)))|(w&F)))|F)))|(((((f&T)&f)|T)|T)&F))&(!T)).
+A: Let's think step-by-step.","1) (F|F)|F = F
+2) T&F = F
+3) F|F = F
+4) F&F = F
+5) W&F = F
+6) F|F = F
+Since F&""any logical expression"" = F, we can simplify the expression to:
+(((o|(o|(F|F)))|F))&(!T)
+
+7) o|(F|F) = o|F = o
+The logical expression reduces to:
+(o|F)&(!T)
+
+8) !T = F
+The final simplified expression:
+(o|F)&F
+
+And since ""any logical expression""&F = F,
+the fully simplified logic formula is F.",F,F
+91,logic,self_consistency,((((((a|(F&((T&(T&T))|T)))|a)|a)&T)&(a&((((((!(T|T))|T)&F)&T)&T)|T)))&(F|T)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((((((a|(F&((T&(T&T))|T)))|a)|a)&T)&(a&((((((!(T|T))|T)&F)&T)&T)|T)))&(F|T)).
+A: Let's think step-by-step.","First, simplify the innermost brackets and remember the following logical operations:
+- T & T = T
+- T & F = F
+- F & X = X (where X can be T or F)
+- T | X = T
+- F | X = X (where X can be T or F)
+- !T = F
+- !F = T
+
+So, the equation simplifies as follows:
+
+((((((a|(F&((T&T)&T))|a)|a)&T)&(a&((((((!T)|T)&F)&T)&T)|T)))&(F|T))
+
+Equality F & X -> F: 
+
+((((((a|F)|a)|a)&T)&(a&((((((!T)|T)&F)&T)&T)|T)))&(F|T))
+
+Equality T & T -> T:
+
+((((((a|F)|a)|a)&T)&(a&(((!T|T)&T)|T)))&(F|T))
+
+Equality !T -> F:
+
+((((((a|F)|a)|a)&T)&(a&((F&T)|T)))&(F|T))
+
+Equality F & T -> F:
+
+((((((a|F)|a)|a)&T)&(a&(F|T)))&(F|T))
+
+Equality F | X -> X:
+
+((((((a|F)|a)|a)&T)&(a|T))&(F|T))
+
+Equality F | X -> X:
+
+(((((a|F)|a)|a)&T)&T)
+
+Equality F | X -> X:
+
+(((a|a)|a)&T)
+
+Equality a | a -> a :
+
+((a|a)&T)
+
+Equality a | a -> a :
+
+(a&T)
+
+Thus, the simplified form of the logic formula is (a&T).",(a&T),a
+92,logic,self_consistency,((!((T|((F&F)&(((a&((T|T)|F))|a)|(T|(T|((g&F)&F))))))|T))&((F&(T&(v&F)))&F)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((!((T|((F&F)&(((a&((T|T)|F))|a)|(T|(T|((g&F)&F))))))|T))&((F&(T&(v&F)))&F)).
+A: Let's think step-by-step.","1. (F&F) simplifies to F (AND gate: if either of the inputs is False, the output will also be False).
+2. (T|T) simplifies to T (OR gate: if either of the inputs is True, the output will also be True).
+3. (g&F) simplifies to F, as does (F&F).
+4. Two places where you have (T|F) can simplify to T.
+5. (a&((T|T)|F)), simplifies to (a&T), which simplifies again to a, because any value AND True will be that same value.
+6. ((a&a)|(T|(T|F))) simplifies to (a|T), which simplifies to T, because any value OR True will always be True.
+7. Now the equation is (!((T|F) | T)) & ((F&(v&F)) & F). After further simplification, the equation becomes (!T & (F & F)) which is same as (!T & F), and simplifies to F, because any value AND False will be False. 
+
+So the final simplified version of the logical formula is F.",F,F
+93,logic,self_consistency,((r|F)&((r&((((r|(r|(F|F)))&r)|r)&r))|(((F|(!((T|((!F)|(T&F)))&T)))|T)&F))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((r|F)&((r&((((r|(r|(F|F)))&r)|r)&r))|(((F|(!((T|((!F)|(T&F)))&T)))|T)&F))).
+A: Let's think step-by-step.","Firstly, considering the logical OR operation with F or logical AND operation with T does not change the original value. This is because F OR anything gives that thing itself. Similarly, T AND anything gives that thing itself. Also, considering logical OR or logical AND between same things does not change that thing itself either. 
+
+Secondly, considering the logical OR operation with T gives T. This is because T OR anything gives T itself. Similarly, considering logical AND operation with F gives F. This is because F AND anything gives F itself.
+
+Thirdly, logical NOT changes the value to the opposite, i.e., !T gives F and !F gives T.
+
+Now lets simplify:
+
+((r|F) & ((r & ((((r|(r|(F|F))) & r)|r) & r)) | (((F|((T|((!F)|(T&F)))&T))) | T) & F))
+
+= ((r) & ((r & (r & r)) | (F & F))  //using first point in paragraph above
+
+= ((r) & ((r & (r & r)) | F)  //AND operation between same set of things as mentioned in first point in paragraph above
+
+= (r & r) | F //logical AND operation is associative
+
+= r | F
+
+= r  //Using ""F OR anything gives that thing itself"" from first point in paragraph above
+
+So, the simplified form is r.",r,r
+94,logic,self_consistency,((t|t)&((((F|((h|T)|T))|(F&((((r&(r|F))&(r|(r|r)))|(F|T))&F)))|(!T))|(F&F))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((t|t)&((((F|((h|T)|T))|(F&((((r&(r|F))&(r|(r|r)))|(F|T))&F)))|(!T))|(F&F))).
+A: Let's think step-by-step.","First, let's simplify the parts which include constants T and F:
+
+1) (t|t) will always result in the value of ""t"", since ""or"" operation will result in True if at least one of the arguments is True. 
+
+2) ((h|T)|T) will always result in T, because the ""or"" operation with T always equals T. 
+
+3) (F&(.........)&F) will always result in F, because the ""and"" operation with F always equals F.
+
+4) (!T) converts T into F.
+
+5) (F|T) equals T because ""or"" operation with T gives T.
+
+6) (r|(r|r)) equals r because ""or"" operation with the same values gives the same value.
+
+With this in mind, the simplified version of your formula is:
+
+  (t&T)|F. 
+
+This can be simplified further, since (t&T) equals t (the ""and"" operation with T gives the second member value), 
+and (t|F) equals t (the ""or"" operation with F gives the first member value). 
+
+So, the final simplification of your formula is: t.",t,t
+95,logic,self_consistency,(((((n&(d|T))&T)|n)|n)|(T&(!(!((((((e&e)|(T&F))|T)&((!F)&F))|(!F))|T))))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(((((n&(d|T))&T)|n)|n)|(T&(!(!((((((e&e)|(T&F))|T)&((!F)&F))|(!F))|T))))).
+A: Let's think step-by-step.","1. Any value ""or"" with True (d|T) is always True, because True or anything is always True. Therefore we can simplify it to (n&T).
+
+2. Any value ""and"" with True (n&T) remains the same, because True and anything is always that value. So it simplifies to n.
+
+3. Any value ""or"" with itself (n|n), remains the same, because x or x is always x. So it simplifies to n.
+
+4. False ""and"" with anything ((!F)&F) is always False, because False and anything is always False. Therefore, we simplify it to F.
+
+5. Any value ""or"" with not that value (F|(!F)) is always True, because True or False is always True. So we replace it with T.
+
+6. True or anything (T|T) is always True, so we simplify ((((((e&e)|(T&F))|T)&T)|T) to T.
+
+7. Any value ""and"" with not not that value (T&(!(!T))) simplifies to that value, so T&(!(!T)) simplifies to T.
+
+8. As a result, the entire logic formula simplifies to (n|T), which is always True. Once a value ""or"" with True, result will always be True. So the final simplified logic formula is T (True).",T,T
+96,logic,self_consistency,((T&(((e|F)|T)|T))&(!(!(F&((F|(k|T))&(T|((j|(T|T))|(F|((s&s)|(T&T)))))))))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((T&(((e|F)|T)|T))&(!(!(F&((F|(k|T))&(T|((j|(T|T))|(F|((s&s)|(T&T)))))))))).
+A: Let's think step-by-step.","1. Since `T or X` is always True, any part of formula where `T` is `or` with other variables wil give True. So, the original logic formula becomes: 
+
+    (T&((T))&(!(!(F&(T&T))))).
+
+2. Additionally, `T and X` is always equivalent to X itself. So simplifying further, we get:
+
+    (!!(!(F&F))).
+
+3. Based on DeMorgan’s Law, !(A&B) is equivalent to !A or !B. So this furthur simplifies to:
+
+    (!!(!F||!F)).
+
+4. Now in Boolean algebra, `!F` is True and `!!(T)` is equivalent to `T`, so this simplifies to:
+
+    T.",T,F
+97,logic,self_consistency,((c|(T|(F|F)))&((((T&(T&T))|(!((((!(!T))|F)&((T&(F&T))&F))&(F|F))))&F)&F)),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+((c|(T|(F|F)))&((((T&(T&T))|(!((((!(!T))|F)&((T&(F&T))&F))&(F|F))))&F)&F)).
+A: Let's think step-by-step.","First, the formula simplifies to:
+
+((c|(T|(F|F)))&(T&F&F))
+
+The expressions (T|(F|F)), (T&(T&T)), (!((!(!T))|F)) &(F|F)), and (T&(F&T)) are always true, false, true and false respectively.
+(!((!(!T))|F)) simplifies to !(!T|F) => !(F|F) => !F which is true.
+
+So, above expression reduced to:
+
+(c|T)&(T&F&F)
+(c|T) is always true because T is always true.
+(T&F&F) is always false because both F are always false.
+Therefore, the whole expression simplifies to:
+
+(T)&(F) = F.",F,F
+98,logic,self_consistency,(!((y|T)|((x|(!(((T|((g|F)&(!T)))&(F&(F&T)))&(t&F))))&(T|(t&(F&T)))))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(!((y|T)|((x|(!(((T|((g|F)&(!T)))&(F&(F&T)))&(t&F))))&(T|(t&(F&T)))))).
+A: Let's think step-by-step.","Firstly, ""g|F"" can be simplified as ""g"", because any value OR False is that value.
+Similarly ""t&F"" is always False, because any value AND False is False.
+""F&T"" is also always False. 
+
+Secondly, ""!T"" is always False, and ""T|any value"" or ""any value|T"" is always True, since ""OR"" operation with a True value always return True.
+
+Combining these, we get:
+
+!((y|T)|((x|!(((T|g)& False)&False))&(T|False)))
+
+which can simplify further to:
+
+!((y|True)|((x|!((True&False)&False))&(True)))
+
+This simplifies to
+
+!(True|((x|!(False&False))&True))
+
+which simplifies to
+
+!(True|((x|True)&True))
+
+It then simplifies to 
+
+!(True|(True&True))
+
+then,
+
+!(True|True)
+
+Finally, ""True | True"" just gives us True, and negating that gives us False, so the entire expression simplifies to:
+
+F",F,F
+99,logic,self_consistency,(((((((((j&j)|((j&T)&(T|T)))|j)&j)&(F|(!(F&F))))&(!F))&(j&j))&F)&(F|(!T))),"Q: Simplify the following logic formula, where the symbols &, | and ! have the semantics of logical and, logical or and logical not, respectively. The values T and F represent the True and False values, respectively. All other literal values can be either True or False.
+(((((((((j&j)|((j&T)&(T|T)))|j)&j)&(F|(!(F&F))))&(!F))&(j&j))&F)&(F|(!T))).
+A: Let's think step-by-step.","1. Simplify inner equations using the Identity Law (p&p = p) and the Law of Excluded Middle (p|p = p):
+
+    (((((((j|((j&T)&T))|j)&j)&(F|!F))&!F)&j)&F)&(F|!T)
+
+2. Now, we simplify using the Domination Law (p&F = F; p|T = T):
+
+    (((((((j|(j&T))|j)&j)&T)&!F)&j)&F)&F
+
+3. We continue by applying the Identity Law (p&p = p), Domination Law (p&F = F) and Law of Negation (!F = T):
+
+    (((((j|j)&j)&T)&T)&j)&F
+
+4. Continue simplification:
+
+    ((j&T)&j)&F
+
+5. By Domination Law (p&F = F):
+
+    F
+
+So, the simplified logic formula is F.",F,F
